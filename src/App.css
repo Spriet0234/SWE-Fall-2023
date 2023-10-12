@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.Header {
+  display: flex;
+  justify-content: space-around;
+  background-color: #000; /* Changed background color to black */
+  padding: 10px;
+}
+
+
+.HeaderLink {
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.HeaderLink:hover {
+  background-color: #e0e0e0;
+}

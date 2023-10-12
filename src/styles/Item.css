@@ -1,0 +1,58 @@
+.item {
+  background-color: white;
+
+  padding: 20px; /* Increased padding for a more spacious design */
+  border-radius: 10px; /* Larger border radius for softer corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Larger, softer box shadow for a floating card effect */
+  text-align: center;
+  margin-right: 5px; /* Added px to correct the unit */
+  margin-left: 5px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.item:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+.item-image {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover; /* Ensures the images fit nicely into the container */
+  border-radius: 5px; /* Slight rounding of image edges to match the container */
+}
+
+.item-name {
+  margin: 15px 0 10px; /* More vertical space around the name */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1.2em; /* Larger font size */
+  font-weight: 500; /* Medium font weight */
+  color: #333; /* Darker color for better readability */
+}
+
+.item-price {
+  color: #007bff;
+  font-size: 1.4em; /* Larger font size makes it stand out more */
+  font-weight: bold;
+  margin-bottom: 15px; /* Added space above the Add to Cart button */
+}
+
+.cart-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px; /* Fully rounded ends for the button */
+  padding: 12px 25px; /* Larger padding for a larger button */
+  font-size: 1em; /* Standard font size for accessibility */
+  cursor: pointer;
+  transition: all 0.3s; /* Affects all properties during transition */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.cart-button:hover {
+  background-color: #0056b3; /* Darker blue on hover for interactive effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow on hover */
+}

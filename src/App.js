@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart"; // Import the Cart component
+
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function App() {
@@ -15,10 +16,10 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/womens-clothing">Women's Clothing</Link>
             <Link to="/mens-clothing">Men's Clothing</Link>
+            <Link className="cart-link" to="/cart">Cart</Link>
           </div>
-          <Link className="cart-link" to="/cart">
-            Cart
-          </Link>
+          
+            
           <Link className="login-link" to="/login">
             Login
           </Link>

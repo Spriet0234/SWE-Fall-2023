@@ -2,28 +2,26 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Home from "./Components/Home";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-
-// Since you mentioned you have Home.js and Login.js, I assume you want to use Login.js
-// as your "Other Page". Let's import and use that.
 import Login from "./Components/Login";
+import Checkout from "./Components/Checkout"; // Step 1: Import the Checkout component
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>{" "}
-          {/* Changed "/other" to "/login" to match the route below */}
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />{" "}
-          {/* Changed "OtherPage" to "Login" */}
-        </Routes>
-      </div>
-    </Router>
+      <Router>
+        <div className="App">
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/checkout">Checkout</Link> {/* Step 3: Add a Link to the checkout page */}
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/checkout" element={<Checkout />} /> {/* Step 4: Add a Route for the checkout page */}
+          </Routes>
+        </div>
+      </Router>
   );
 }
 

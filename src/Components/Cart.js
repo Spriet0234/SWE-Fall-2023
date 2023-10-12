@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Checkout.css';
 
-const Checkout = () => {
+const Cart = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -94,4 +94,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default Cart;

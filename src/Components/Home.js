@@ -45,7 +45,7 @@ const Home = () => {
     <div>
       <div className="home-page">
         <header className="home-header">
-          <h1>ClothingStore</h1>
+          <h1>Clothing Store</h1>
           <p>Your one-stop shop for the latest fashion!</p>
         </header>
       </div>
@@ -59,6 +59,19 @@ const Home = () => {
             onProductClick={() => onProductClick(item.name)}
           />
         ))}
+      </section>
+      <section>
+        <div className="btn-group" role="group" aria-label="...">
+          <button type="button" className="btn btn-default">1</button>
+          <button type="button" className="btn btn-default">2</button>
+          <button type="button" className="btn btn-default">3</button>
+          <button type="button" className="btn btn-default">4</button>
+          <button type="button" className="btn btn-default">5</button>
+          <button type="button" className="btn btn-default">6</button>
+          <button type="button" className="btn btn-default">7</button>
+          <button type="button" className="btn btn-default">8</button>
+          <button type="button" className="btn btn-default">9</button>
+        </div>
       </section>
     </div>
   );

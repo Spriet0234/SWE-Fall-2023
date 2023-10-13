@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
@@ -13,16 +14,15 @@ function App() {
       <div className="App">
         <header className="navbar">
           <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/womens-clothing">Women's Clothing</Link>
-            <Link to="/mens-clothing">Men's Clothing</Link>
-            <Link className="cart-link" to="/cart">Cart</Link>
+              <Link to="/">Home</Link>
+              <Link to="/womens-clothing">Women's Clothing</Link>
+              <Link to="/mens-clothing">Men's Clothing</Link>
+              <Link className="cart-link" to="/cart">Cart</Link>
+            <Link className="login-link" to="/login">Login</Link>
           </div>
           
             
-          <Link className="login-link" to="/login">
-            Login
-          </Link>
+
         </header>
         <Routes>
           <Route path="/" element={<Home />} />

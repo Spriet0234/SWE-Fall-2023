@@ -1,31 +1,32 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/Item.css";
 import { CartContext } from "./CartContext";
 
 const Item = ({ id, image, name, price }) => {
+  const navigate = useNavigate();
   const { setCartItems } = useContext(CartContext);
 
-  const addToCart = (event) => {
-    event.stopPropagation(); // This prevents navigation when adding to cart
+  const addToCart = () => {
     const itemId = new Date().getTime();
     setCartItems((prevItems) => [...prevItems, { id: itemId, name, price }]);
   };
 
+  const goToDetails = () => {
+    navigate(`/item-details/${id}`);
+  };
+
   return (
-    <Link
-      to={`/item-details/${id}`}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
-      <div className="item">
+    <div className="item">
+      <div onClick={goToDetails}>
         <img src={image} alt={name} className="item-image" />
         <h3 className="item-name">{name}</h3>
         <p className="item-price">${price}</p>
-        <div className="cart-button" onClick={addToCart}>
-          Add to Cart
-        </div>
       </div>
-    </Link>
+      <div className="cart-button" onClick={addToCart}>
+        Add to Cart
+      </div>
+    </div>
   );
 };
 

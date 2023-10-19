@@ -1,5 +1,7 @@
 .item {
   background-color: white;
+  width: 300px;
+  height: 400px;
 
   padding: 20px; /* Increased padding for a more spacious design */
   border-radius: 10px; /* Larger border radius for softer corners */

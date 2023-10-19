@@ -1,25 +1,31 @@
-// Item.js
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Item.css";
-import { CartContext } from "./CartContext"; // adjust the import path as necessary
+import { CartContext } from "./CartContext";
 
-const Item = ({ image, name, price }) => {
+const Item = ({ id, image, name, price }) => {
   const { setCartItems } = useContext(CartContext);
 
-  const addToCart = () => {
-    const itemId = new Date().getTime(); // generates a unique ID based on the current time
+  const addToCart = (event) => {
+    event.stopPropagation(); // This prevents navigation when adding to cart
+    const itemId = new Date().getTime();
     setCartItems((prevItems) => [...prevItems, { id: itemId, name, price }]);
   };
 
   return (
-    <div className="item">
-      <img src={image} alt={name} className="item-image" />
-      <h3 className="item-name">{name}</h3>
-      <p className="item-price">${price}</p>
-      <div className="cart-button" onClick={addToCart}>
-        Add to Cart
+    <Link
+      to={`/item-details/${id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      <div className="item">
+        <img src={image} alt={name} className="item-image" />
+        <h3 className="item-name">{name}</h3>
+        <p className="item-price">${price}</p>
+        <div className="cart-button" onClick={addToCart}>
+          Add to Cart
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

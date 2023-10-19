@@ -6,8 +6,11 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart"; // Import the Cart component
 import { CartProvider } from "./Components/CartContext"; // Import the CartProvider
-
+import Register from "./Components/RegisterComponent";
+import MensClothing from "./Components/MensClothing";
+import WomensClothing from "./Components/WomensClothing";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import ItemDetails from "./Components/ProductDetails";
 
 function App() {
   return (
@@ -31,8 +34,13 @@ function App() {
           </header>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/cart" element={<Cart />} /> {/* Cart Route */}
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/mens-clothing" element={<MensClothing />} />
+            <Route path="/womens-clothing" element={<WomensClothing />} />
+            <Route path="/item-details/:id" element={<ItemDetails />} />
+
             {/* You can create corresponding components for these routes if required */}
             <Route
               path="/womens-clothing"

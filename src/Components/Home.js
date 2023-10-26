@@ -85,6 +85,7 @@ const Home = () => {
         <header className="home-header">
           <h1>Clothes Shopping Site</h1>
           <p>Your one-stop shop for the latest fashion!</p>
+          <p>Free shipping on orders over $50!</p>
         </header>
 
         <div className="input-group mb-3">

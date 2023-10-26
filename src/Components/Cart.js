@@ -19,11 +19,23 @@ export default function Cart() {
   // Calculate the subtotal
   const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
 
-  const shipping = 20; // Shipping cost
+  let shipping = 9.99; // Shipping cost
   const taxRate = 0.0825; // Tax rate (8.25%)
+  let total  = 0;
 
   // Calculate the total including tax and shipping
-  const total = subtotal + shipping + subtotal * taxRate;
+  switch (true) {
+    case subtotal <= 0:
+      shipping = 0;
+      total = subtotal;
+      break;
+    case subtotal > 50:
+      shipping = 0;
+      total = subtotal + subtotal * taxRate;
+      break;
+    default:
+      total = subtotal + shipping + subtotal * taxRate;
+  }  
 
   const handleRemoveItem = (id) => {
     console.log(id);
@@ -207,7 +219,7 @@ export default function Cart() {
                         </div>
 
                         <div className="d-flex justify-content-between">
-                          <p className="mb-2">Total (Incl. taxes)</p>
+                          <p className="mb-2">Total (Incl. taxes @ 8.25%)</p>
                           <p className="mb-2">${total.toFixed(2)}</p>
                         </div>
 

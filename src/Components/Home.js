@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/Home.css";
 import Item from "./Item";
+import { CartContext } from "./CartContext";
 
 const Home = () => {
+  const { addToCart } = useContext(CartContext);
+
   // Dummy data for clothing items
   const [items, setItems] = useState([
     {
@@ -49,6 +52,7 @@ const Home = () => {
     },
     // ... more items
   ]);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState(items);
 
@@ -68,6 +72,11 @@ const Home = () => {
   const onProductClick = (itemName) => {
     console.log(`${itemName} clicked!`);
     // Add additional logic here for when an item is clicked
+  };
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    console.log(`Added ${item.name} to the cart!`);
   };
 
   return (
@@ -102,46 +111,16 @@ const Home = () => {
       </div>
       <section style={{ display: "flex", flexWrap: "wrap", margin: 10 }}>
         {filteredItems.map((item) => (
-          <Item
-            key={item.id}
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            onProductClick={() => onProductClick(item.name)}
-          />
+          <div key={item.id} className="item-container">
+            <Item
+              image={item.image}
+              name={item.name}
+              price={item.price}
+              onProductClick={() => onProductClick(item.name)}
+            />
+          </div>
         ))}
       </section>
-      {/* <section>
-        <div className="btn-group" role="group" aria-label="...">
-          <button type="button" className="btn btn-default">
-            1
-          </button>
-          <button type="button" className="btn btn-default">
-            2
-          </button>
-          <button type="button" className="btn btn-default">
-            3
-          </button>
-          <button type="button" className="btn btn-default">
-            4
-          </button>
-          <button type="button" className="btn btn-default">
-            5
-          </button>
-          <button type="button" className="btn btn-default">
-            6
-          </button>
-          <button type="button" className="btn btn-default">
-            7
-          </button>
-          <button type="button" className="btn btn-default">
-            8
-          </button>
-          <button type="button" className="btn btn-default">
-            9
-          </button>
-        </div>
-      </section> */}
     </div>
   );
 };

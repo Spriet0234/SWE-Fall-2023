@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
@@ -9,8 +9,16 @@ import { CartProvider } from "./Components/CartContext"; // Import the CartProvi
 import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";
 import WomensClothing from "./Components/WomensClothing";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import ItemDetails from "./Components/ProductDetails";
+import SearchBar from "./Components/SearchBar";
+import SearchComp from "./Components/SearchComp";
 
 function App() {
   return (
@@ -31,6 +39,9 @@ function App() {
                 Login
               </Link>
             </div>
+            <div className="searchbar-container">
+              <SearchBar />
+            </div>
           </header>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -40,6 +51,7 @@ function App() {
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
+            <Route path="/search-comp" element={<SearchComp />} />
 
             {/* You can create corresponding components for these routes if required */}
             <Route

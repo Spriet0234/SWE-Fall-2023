@@ -88,7 +88,7 @@ const Home = () => {
           <p>Free shipping on orders over $50!</p>
         </header>
 
-        <div className="input-group mb-3">
+        {/* <div className="input-group mb-3">
           <input
             type="text"
             className="form-control"
@@ -108,7 +108,7 @@ const Home = () => {
               Enter
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
       <section style={{ display: "flex", flexWrap: "wrap", margin: 10 }}>
         {filteredItems.map((item) => (

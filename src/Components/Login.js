@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/LoginPage.css";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -27,9 +28,13 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Login</button>
-        <a href="#forgot-password" className="forgot-password-link">
+        {/* <a href="#forgot-password" className="forgot-password-link">
           Forgot Password?
-        </a>
+        </a> */}
+        <div style={{ marginTop: 20 }}>
+          <span>Don't have an account? </span>
+          <Link to="/register">Register</Link>
+        </div>
       </div>
     </div>
   );

@@ -37,3 +37,13 @@
   background-color: #007bff;
   color: #fff;
 }
+.cart-link {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007bff;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cart-link:hover {
+  color: #0056b3;
+}

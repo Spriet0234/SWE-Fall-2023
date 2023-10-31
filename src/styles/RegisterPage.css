@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
   font-family: Arial, sans-serif;
   max-width: 400px;
   margin: 5% auto;
@@ -8,7 +8,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.login-form input {
+.register-form input {
   width: 100%;
   padding: 10px 15px;
   margin-bottom: 15px;
@@ -17,7 +17,7 @@
   font-size: 16px;
 }
 
-.login-form button {
+.register-form button {
   width: 100%;
   padding: 10px 15px;
   background-color: #007bff;
@@ -29,11 +29,11 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.login-form button:hover {
+.register-form button:hover {
   background-color: #0056b3;
 }
 
-.forgot-password-link {
+.already-have-account-link {
   display: block;
   margin-top: 10px;
   text-align: right;
@@ -42,9 +42,10 @@
   text-decoration: none;
 }
 
-.forgot-password-link:hover {
+.already-have-account-link:hover {
   text-decoration: underline;
 }
+
 .register-option {
-  margin-top: 20;
+  margin-top: 20px;
 }

@@ -1,13 +1,31 @@
-import React from "react";
-import "../styles/Item.css"; // Assuming you've renamed the CSS file to Item.css
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/Item.css";
+import { CartContext } from "./CartContext";
 
-const Item = ({ image, name, price, onProductClick }) => {
+const Item = ({ id, image, name, price }) => {
+  const navigate = useNavigate();
+  const { setCartItems } = useContext(CartContext);
+
+  const addToCart = () => {
+    const itemId = new Date().getTime();
+    setCartItems((prevItems) => [...prevItems, { id: itemId, name, price }]);
+  };
+
+  const goToDetails = () => {
+    navigate(`/item-details/${id}`);
+  };
+
   return (
-    <div className="item" onClick={onProductClick}>
-      <img src={image} alt={name} className="item-image" />
-      <h3 className="item-name">{name}</h3>
-      <p className="item-price">${price}</p>{" "}
-      <div className="cart-button">Add to Cart</div>
+    <div className="item">
+      <div onClick={goToDetails}>
+        <img src={image} alt={name} className="item-image" />
+        <h3 className="item-name">{name}</h3>
+        <p className="item-price">${price}</p>
+      </div>
+      <div className="cart-button" onClick={addToCart}>
+        Add to Cart
+      </div>
     </div>
   );
 };

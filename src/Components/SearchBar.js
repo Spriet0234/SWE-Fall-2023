@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
-import "../styles/Home.css";
-import Item from "./Item";
-import { CartContext } from "./CartContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Step 1: Import the useNavigate hook
+import "../styles/Search.css";
 
-const Home = () => {
-  const { addToCart } = useContext(CartContext);
+export default function SearchBar() {
+  const navigate = useNavigate(); // Step 2: Use the hook to get the navigate function
 
-  // Dummy data for clothing items
   const [items, setItems] = useState([
     {
       id: 1,
@@ -52,78 +50,37 @@ const Home = () => {
     },
     // ... more items
   ]);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState(items);
 
   const handleSearch = () => {
+    let filteredResult;
     if (searchTerm.trim() === "") {
       // If search term is empty or just spaces, reset to all items
-      setFilteredItems(items);
+      filteredResult = items;
     } else {
       // Filter items based on the search term
-      const result = items.filter((item) =>
+      filteredResult = items.filter((item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setFilteredItems(result);
     }
-  };
 
-  const onProductClick = (itemName) => {
-    console.log(`${itemName} clicked!`);
-    // Add additional logic here for when an item is clicked
-  };
-
-  const handleAddToCart = (item) => {
-    addToCart(item);
-    console.log(`Added ${item.name} to the cart!`);
+    setFilteredItems(filteredResult);
+    navigate("/search-comp", { state: { filteredItems: filteredResult } });
   };
 
   return (
-    <div>
-      <div className="home-page">
-        <header className="home-header">
-          <h1>Clothes Shopping Site</h1>
-          <p>Your one-stop shop for the latest fashion!</p>
-          <p>Free shipping on orders over $50!</p>
-        </header>
-
-        {/* <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search for a product..."
-            aria-label="Product search"
-            aria-describedby="search-button"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              id="search-button"
-              onClick={handleSearch}
-            >
-              Enter
-            </button>
-          </div>
-        </div> */}
-      </div>
-      <section style={{ display: "flex", flexWrap: "wrap", margin: 10 }}>
-        {filteredItems.map((item) => (
-          <div key={item.id} className="item-container">
-            <Item
-              image={item.image}
-              name={item.name}
-              price={item.price}
-              onProductClick={() => onProductClick(item.name)}
-            />
-          </div>
-        ))}
-      </section>
-    </div>
+    <input
+      type="text"
+      className="search-input"
+      placeholder="Search for a product..."
+      aria-label="Product search"
+      aria-describedby="search-button"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      onKeyPress={(e) => {
+        if (e.key === "Enter") handleSearch();
+      }}
+    />
   );
-};
-
-export default Home;
+}

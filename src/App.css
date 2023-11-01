@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ffffff;
 }
 
 .App-link {
@@ -35,4 +35,36 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* New styles for the navbar */
+.navbar {
+  background-color: #2d2e31; /* Or any color you like */
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-around; /* evenly distribute links */
+  align-items: center; /* align vertically */
+  flex-wrap: wrap; /* wrap the items if they don't fit in one row */
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px; /* space between links */
+}
+
+.nav-links a {
+  color: white; /* color of the links */
+  text-decoration: none; /* remove underlines */
+  padding: 5px 15px; /* spacing around the links for click area */
+  border-radius: 5px; /* rounded corners */
+  transition: background-color 0.3s ease; /* smooth transition for hover effect */
+}
+
+.nav-links a:hover {
+  background-color: #444; /* change color on hover */
+}
+
+/* Specific styles for SearchBar if needed */
+.searchbar-container {
+  margin-left: 10px;
 }

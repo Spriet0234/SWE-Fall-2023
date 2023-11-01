@@ -5,7 +5,7 @@ import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart"; // Import the Cart component
-import Checkout from "./Components/Checkout"; // Import the Checkout component
+import Checkout from './Components/Checkout';
 import { CartProvider } from "./Components/CartContext"; // Import the CartProvider
 import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";

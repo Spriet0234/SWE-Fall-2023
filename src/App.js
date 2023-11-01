@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart"; // Import the Cart component
+import Checkout from "./Components/Checkout"; // Import the Checkout component
 import { CartProvider } from "./Components/CartContext"; // Import the CartProvider
 import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";
@@ -15,7 +16,6 @@ import ItemDetails from "./Components/ProductDetails";
 function App() {
   return (
     <CartProvider>
-      {" "}
       {/* Wrap your application within the CartProvider */}
       <Router>
         <div className="App">
@@ -41,15 +41,8 @@ function App() {
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
 
-            {/* You can create corresponding components for these routes if required */}
-            <Route
-              path="/womens-clothing"
-              element={<div>Women's Clothing Page</div>}
-            />
-            <Route
-              path="/mens-clothing"
-              element={<div>Men's Clothing Page</div>}
-            />
+            
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </div>
       </Router>

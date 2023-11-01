@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "/Users/estebanleal/Desktop/SWE-Fall-2023/src/styles/checkout.css";
+import '../styles/checkout.css';
 import {
   MDBBtn,
   MDBCard,

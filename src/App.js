@@ -51,7 +51,10 @@ function App() {
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
-            <Route path="/search-comp" element={<SearchComp />} />
+            <Route
+              path="/search-comp"
+              element={<SearchComp key={Date.now()} />}
+            />
 
             {/* You can create corresponding components for these routes if required */}
             <Route

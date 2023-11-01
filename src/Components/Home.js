@@ -11,7 +11,7 @@ const Home = () => {
     {
       id: 1,
       name: "T-Shirt",
-      price: 19.99,
+      price: 17.99,
       image:
         "https://media.istockphoto.com/id/1354020635/photo/white-t-shirt-mockup-front-used-as-design-template-tee-shirt-blank-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=X5WLEp3EiqJ7eQqGQPW6Vx8l7joo56cTsCmSOIaAfPI=",
     },

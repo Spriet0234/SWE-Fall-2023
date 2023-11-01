@@ -67,6 +67,7 @@ export default function SearchComp() {
               image={item.image}
               name={item.name}
               price={item.price}
+              description={item.description}
               onProductClick={() => onProductClick(item.name)}
             />
           </div>

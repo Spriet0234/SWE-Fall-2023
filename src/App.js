@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart"; // Import the Cart component
+import Checkout from './Components/Checkout';
 import { CartProvider } from "./Components/CartContext"; // Import the CartProvider
 import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";
@@ -23,7 +24,6 @@ import SearchComp from "./Components/SearchComp";
 function App() {
   return (
     <CartProvider>
-      {" "}
       {/* Wrap your application within the CartProvider */}
       <Router>
         <div className="App">
@@ -56,15 +56,8 @@ function App() {
               element={<SearchComp key={Date.now()} />}
             />
 
-            {/* You can create corresponding components for these routes if required */}
-            <Route
-              path="/womens-clothing"
-              element={<div>Women's Clothing Page</div>}
-            />
-            <Route
-              path="/mens-clothing"
-              element={<div>Men's Clothing Page</div>}
-            />
+            
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </div>
       </Router>

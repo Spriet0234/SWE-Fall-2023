@@ -10,6 +10,12 @@ export default function SearchComp() {
   const [priceFilter, setPriceFilter] = useState(""); // "low-to-high" or "high-to-low"
   const [availableFilter, setAvailableFilter] = useState(false); // true for available items only, false for all
 
+  useEffect(() => {
+    if (location.state?.filteredItems) {
+      setFilteredItems(location.state.filteredItems);
+    }
+  }, [location.state]);
+
   // You can now use the filteredItems in your component
   const onProductClick = (itemName) => {
     console.log(`${itemName} clicked!`);
@@ -67,6 +73,7 @@ export default function SearchComp() {
               image={item.image}
               name={item.name}
               price={item.price}
+              description={item.description}
               onProductClick={() => onProductClick(item.name)}
             />
           </div>

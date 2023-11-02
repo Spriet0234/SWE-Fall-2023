@@ -46,12 +46,20 @@
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 25px; /* Fully rounded ends for the button */
-  padding: 12px 25px; /* Larger padding for a larger button */
-  font-size: 1em; /* Standard font size for accessibility */
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 1em;
   cursor: pointer;
-  transition: all 0.3s; /* Affects all properties during transition */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Other styles remain the same */
+}
+
+/* New style for the active state of the button */
+.cart-button:active {
+  background-color: #0069d9; /* A slightly darker shade when clicked */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Optional: slight change to the shadow for a "pressed" effect */
+  transform: scale(0.98); /* Optional: slight scale down to emulate a press */
 }
 
 .cart-button:hover {

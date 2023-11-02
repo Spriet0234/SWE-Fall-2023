@@ -4,13 +4,12 @@
 }
 
 .mens-products {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create a 3x3 grid */
   gap: 20px;
 }
 
 .product {
-  width: calc(25% - 20px); /* Adjust width based on your design preference */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 8px;

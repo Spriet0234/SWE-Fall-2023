@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FaShoppingBag } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
@@ -94,20 +96,26 @@ function App() {
     <CartProvider>
       <Router>
         <div className="App">
+          <div className="top-banner">
+            <img className="banner-image" src="Logo.png" alt="Banner Image" />
+          </div>
           <header className="navbar">
             <div className="nav-links">
               <Link to="/">Home</Link>
               <Link to="/womens-clothing">Women's Clothing</Link>
               <Link to="/mens-clothing">Men's Clothing</Link>
-              <Link className="cart-link" to="/cart">
-                Cart
-              </Link>
-              <Link className="login-link" to="/login">
-                Login
-              </Link>
             </div>
-            <div className="searchbar-container">
-              <SearchBar items={items} />
+
+            <div className="nav-links">
+              <div className="searchbar-container">
+                <SearchBar items={items} />
+              </div>
+              <Link className="login-link" to="/login">
+                <FaUserCircle /> {/* Render the avatar icon */}
+              </Link>
+              <Link className="cart-link" to="/cart">
+                <FaShoppingBag /> {/* Render the shopping bag icon */}
+              </Link>
             </div>
           </header>
           <Routes>

@@ -74,6 +74,7 @@ export default function SearchComp() {
               name={item.name}
               price={item.price}
               description={item.description}
+              quantity={item.quantity}
               onProductClick={() => onProductClick(item.name)}
             />
           </div>

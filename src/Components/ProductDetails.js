@@ -17,12 +17,14 @@ const ItemDetails = () => {
     price: 0,
     description: "Description not available",
   };
+  console.log(item.description);
 
   return (
     <div>
       <img src={item.image} alt={item.name} />
       <h2>{item.name}</h2>
       <p>${item.price.toFixed(2)}</p> <p>{item.description}</p>
+      <p>{`Available: ${item.quantity}`}</p>
       <div>
         <button onClick={goBack}>Back</button>
         {/* ... other component content ... */}

@@ -1,33 +1,53 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // If you're using react-router v6+
 
 const AddItemForm = ({ addItem }) => {
+  const navigate = useNavigate(); // If you're using react-router v6+
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState("");
+  const [itemAdded, setItemAdded] = useState(false);
 
   const handleSubmit = (e) => {
-    // Reset form
-    setName("");
-    setPrice(); // Should be setPrice(0) or setPrice('')
-    setDescription("");
-    setQuantity(1);
-    setImage(""); // Previously setImage() without a value
-
     e.preventDefault();
-    // Create a new item object
+    // Create a new item object with the current state values
     const newItem = { name, price, description, quantity, image };
     // This is where you would handle updating the items array.
     addItem(newItem);
+    // Set the item added flag to true to switch to the confirmation screen
+    setItemAdded(true);
+    // Do not reset form here, it should be done after confirmation or when going back to home
+  };
 
-    // Reset form
+  const handleBackToHome = () => {
+    // Reset form and navigate back to home
     setName("");
-    setPrice();
+    setPrice(0);
     setDescription("");
     setQuantity(1);
     setImage("");
+    setItemAdded(false); // Make sure to reset the added state as well
+    navigate("/"); // Adjust the route as needed for your home page
   };
+
+  if (itemAdded) {
+    return (
+      <div>
+        <h2>Your item has been added!</h2>
+        <div>
+          <p>Name: {name}</p>
+          <p>Price: ${price.toFixed(2)}</p>
+          <p>Description: {description}</p>
+          <p>Quantity: {quantity}</p>
+          <img src={image} alt={name} />
+        </div>
+        <button onClick={handleBackToHome}>Go Back to Home</button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 
-const AddItemForm = ({ onAddItem }) => {
+const AddItemForm = ({ addItem }) => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState("");
 
   const handleSubmit = (e) => {
+    // Reset form
+    setName("");
+    setPrice(); // Should be setPrice(0) or setPrice('')
+    setDescription("");
+    setQuantity(1);
+    setImage(""); // Previously setImage() without a value
+
     e.preventDefault();
     // Create a new item object
     const newItem = { name, price, description, quantity, image };
     // This is where you would handle updating the items array.
-    onAddItem(newItem);
+    addItem(newItem);
 
     // Reset form
     setName("");
-    setPrice("");
+    setPrice();
     setDescription("");
     setQuantity(1);
     setImage("");
@@ -38,17 +45,20 @@ const AddItemForm = ({ onAddItem }) => {
       <div>
         <label htmlFor="itemPrice">Price:</label>
         <input
-          type="number"
+          type="text"
           id="itemPrice"
           value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          onChange={(e) => setPrice(parseFloat(e.target.value))}
           required
+          pattern="^[0-9]*\.?[0-9]*$"
+          title="Please enter a valid number."
         />
       </div>
       <div>
         <label htmlFor="itemDescription">Description:</label>
-        <textarea
+        <input
           id="itemDescription"
+          type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -56,9 +66,10 @@ const AddItemForm = ({ onAddItem }) => {
       <div>
         <label htmlFor="itemQuantity">Quantity:</label>
         <input
-          type="number"
+          type="text"
           id="itemQuantity"
           value={quantity}
+          pattern="^[0-9]*\.?[0-9]*$"
           onChange={(e) => setQuantity(e.target.value)}
           required
           min="1"

@@ -93,6 +93,12 @@ function App() {
     },
     // ... more items
   ]);
+  const addItem = (newItem) => {
+    setItems((prevItems) => {
+      return [...prevItems, { ...newItem, id: prevItems.length + 1 }];
+    });
+    console.log(items);
+  };
   return (
     <CartProvider>
       <Router>
@@ -127,7 +133,10 @@ function App() {
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
-            <Route path="/add-item" element={<AddItemForm />} />
+            <Route
+              path="/add-item"
+              element={<AddItemForm addItem={addItem} />}
+            />
 
             <Route
               path="/search-comp"

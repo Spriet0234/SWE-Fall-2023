@@ -12,7 +12,7 @@ const Item = ({ id, image, name, price, description, quantity }) => {
     const itemId = new Date().getTime();
     setCartItems((prevItems) => [
       ...prevItems,
-      { id: itemId, name, price, description, quantity },
+      { id: itemId, name, price, description, quantity, image },
     ]);
   };
 

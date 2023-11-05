@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
       ...item,
       id: uuidv4(), // This should generate a unique id for each item
     };
-    console.log("Adding item with ID:", itemToAdd.id); // Log the ID of the new item
+    console.log("Adding item with ID:", itemToAdd); // Log the ID of the new item
     setCartItems((prevItems) => [...prevItems, itemToAdd]);
   };
 

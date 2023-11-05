@@ -15,6 +15,7 @@ import { CartContext } from "./CartContext";
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(CartContext);
+  console.log(cartItems);
 
   // Calculate the subtotal
   const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
@@ -84,7 +85,7 @@ export default function Cart() {
                             <div className="d-flex flex-row align-items-center">
                               <div>
                                 <MDBCardImage
-                                  src="https://media.istockphoto.com/id/1354020635/photo/white-t-shirt-mockup-front-used-as-design-template-tee-shirt-blank-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=X5WLEp3EiqJ7eQqGQPW6Vx8l7joo56cTsCmSOIaAfPI="
+                                  src={item.image}
                                   // Image URL
                                   fluid
                                   className="rounded-3"
@@ -93,7 +94,9 @@ export default function Cart() {
                                 />
                               </div>
                               <div className="ms-3">
-                                <MDBTypography tag="h5">{item.name}</MDBTypography>
+                                <MDBTypography tag="h5">
+                                  {item.name}
+                                </MDBTypography>
                                 <p className="small mb-0">{item.details}</p>
                               </div>
                             </div>
@@ -150,7 +153,8 @@ export default function Cart() {
                             <div className="d-flex justify-content-between">
                               <span>${total.toFixed(2)}</span>
                               <span>
-                                Checkout <i className="fas fa-long-arrow-alt-right ms-2"></i>
+                                Checkout{" "}
+                                <i className="fas fa-long-arrow-alt-right ms-2"></i>
                               </span>
                             </div>
                           </MDBBtn>

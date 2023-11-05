@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../styles/checkout.css';
+import "../styles/checkout.css";
 import {
   MDBBtn,
   MDBCard,
@@ -12,6 +12,8 @@ import {
 } from "mdb-react-ui-kit";
 
 const Checkout = () => {
+  const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+
   const [formData, setFormData] = useState({
     firstName: "",
     middleInitial: "",
@@ -40,7 +42,37 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Process or send form data here
+
+    // Assuming data submission is successful, show confirmation page
+    setCheckoutCompleted(true);
   };
+  if (checkoutCompleted) {
+    return (
+      <div className="checkout-container">
+        <h1>Thank you for your purchase!</h1>
+        <div className="confirmation-details">
+          <p>
+            <strong>Name:</strong> {formData.firstName} {formData.middleInitial}{" "}
+            {formData.lastName}
+          </p>
+          <p>
+            <strong>Address:</strong> {formData.streetAddress},{" "}
+            {formData.apartmentNumber && `Apt ${formData.apartmentNumber},`}{" "}
+            {formData.city}, {formData.state} {formData.zipcode}
+          </p>
+          <p>
+            <strong>Phone:</strong> {formData.phoneNumber}
+          </p>
+          <p>
+            <strong>Email:</strong> {formData.email}
+          </p>
+        </div>
+        <Link to="/" className="back-link">
+          Back to Shopping
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="checkout-container">
@@ -182,5 +214,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
-

@@ -7,8 +7,8 @@ export default function SearchComp() {
   const initialItems = location.state?.filteredItems || [];
 
   const [filteredItems, setFilteredItems] = useState(initialItems);
-  const [priceFilter, setPriceFilter] = useState(""); // "low-to-high" or "high-to-low"
-  const [availableFilter, setAvailableFilter] = useState(false); // true for available items only, false for all
+  const [priceFilter, setPriceFilter] = useState("");
+  const [availableFilter, setAvailableFilter] = useState(false);
 
   useEffect(() => {
     if (location.state?.filteredItems) {
@@ -16,32 +16,29 @@ export default function SearchComp() {
     }
   }, [location.state]);
 
-  // You can now use the filteredItems in your component
-  const onProductClick = (itemName) => {
-    console.log(`${itemName} clicked!`);
-    // Add additional logic here for when an item is clicked
-  };
-  console.log(filteredItems);
   useEffect(() => {
     let newFilteredItems = [...initialItems];
 
+    // Sorting by price
     if (priceFilter === "low-to-high") {
       newFilteredItems.sort((a, b) => a.price - b.price);
     } else if (priceFilter === "high-to-low") {
       newFilteredItems.sort((a, b) => b.price - a.price);
     }
 
+    // Filtering by availability based on quantity
     if (availableFilter) {
-      newFilteredItems = newFilteredItems.filter((item) => item.available);
+      newFilteredItems = newFilteredItems.filter((item) => item.quantity > 0);
     }
 
     setFilteredItems(newFilteredItems);
-  }, [priceFilter, availableFilter]);
-  function toggleDropdown() {
-    const dropdownContent = document.querySelector(".dropdown-content");
-    dropdownContent.style.display =
-      dropdownContent.style.display === "none" ? "block" : "none";
-  }
+  }, [priceFilter, availableFilter, initialItems]);
+
+  // Event handler for when an item is clicked
+  const onProductClick = (itemName) => {
+    console.log(`${itemName} clicked!`);
+    // Add additional logic here for when an item is clicked
+  };
 
   return (
     <div>

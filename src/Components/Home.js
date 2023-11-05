@@ -1,9 +1,12 @@
 import React, { useState, useContext } from "react";
 import "../styles/Home.css";
 import Item from "./Item";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
 
 const Home = ({ items }) => {
+  const navigate = useNavigate();
+
   const { addToCart } = useContext(CartContext);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,14 +16,19 @@ const Home = ({ items }) => {
     console.log(`${itemName} clicked!`);
     // Add additional logic here for when an item is clicked
   };
+  const addItem = () => {
+    navigate(`/add-item`);
+  };
 
   return (
     <div>
       <div className="home-page">
         <header className="home-header">
           <h1>Clothes Shopping Site</h1>
-          <p>Your one-stop shop for the latest fashion!</p>
-          <p>Free shipping on orders over $50!</p>
+          <div>
+            <p>Your one-stop shop for the latest fashion!</p>
+            <button onClick={addItem}>Add Items</button>
+          </div>
         </header>
       </div>
       <section style={{ display: "flex", flexWrap: "wrap", margin: 10 }}>

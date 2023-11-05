@@ -12,6 +12,7 @@ import { CartProvider } from "./Components/CartContext"; // Import the CartProvi
 import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";
 import WomensClothing from "./Components/WomensClothing";
+import AddItemForm from "./Components/AddItemForm";
 import {
   BrowserRouter as Router,
   Routes,
@@ -126,6 +127,8 @@ function App() {
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
+            <Route path="/add-item" element={<AddItemForm />} />
+
             <Route
               path="/search-comp"
               element={<SearchComp key={Date.now()} />}

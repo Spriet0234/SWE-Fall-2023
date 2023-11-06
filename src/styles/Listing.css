@@ -1,0 +1,43 @@
+/* App.css */
+
+.Listing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.filters {
+    width: 300px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.filters h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.filters label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.filters input[type="checkbox"],
+.filters input[type="range"],
+.filters select {
+    margin-left: 10px;
+}
+
+.clothes {
+    width: 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+
+.clothes h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}

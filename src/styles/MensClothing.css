@@ -1,17 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400&display=swap');
+
 .mens-clothing-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding-left: 40px;
+  justify-content: center;
+  font-family: 'Chakra Petch', sans-serif;
 }
 
 .mens-products {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Create a 3x3 grid */
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 10px/* Create a 3x3 grid */
 }
 
 .product {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   transition: transform 0.3s ease;
 }

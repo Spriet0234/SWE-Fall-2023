@@ -43,16 +43,16 @@
 
 /* New styles for the navbar */
 .navbar {
-  background-color: #2d2e31; /* Or any color you like */
+  background-color: #2d2e31;
   display: flex;
-  justify-content: space-around; /* evenly distribute links */
-  align-items: center; /* align vertically */
-  flex-wrap: wrap; /* wrap the items if they don't fit in one row */
+  justify-content: center; /* Center the links horizontally */
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links {
   display: flex;
-  gap: 10px; /* space between links */
+  gap: 10px;
 }
 
 .nav-links a {
@@ -74,7 +74,7 @@
 
 .top-banner {
   background-color: #e84e36;
-  color: #fff;
+  color: #ffffff;
   padding: 10px;
   display: flex;
   justify-content: space-between;

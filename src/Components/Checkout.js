@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "../styles/checkout.css";
 import {
@@ -10,9 +10,13 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { useLocation } from "react-router-dom";
+import { CartContext } from "./CartContext";
 
 const Checkout = () => {
+  const { cartItems, removeFromCart } = useContext(CartContext);
   const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+  console.log(cartItems);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -87,6 +91,7 @@ const Checkout = () => {
             id="firstName"
             value={formData.firstName}
             onChange={handleChange}
+            required
           />
           <label htmlFor="middleInitial">Middle Initial (Optional)</label>
           <input
@@ -103,6 +108,7 @@ const Checkout = () => {
             id="lastName"
             value={formData.lastName}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -114,6 +120,7 @@ const Checkout = () => {
             id="streetAddress"
             value={formData.streetAddress}
             onChange={handleChange}
+            required
           />
           <label htmlFor="city">City</label>
           <input
@@ -122,6 +129,7 @@ const Checkout = () => {
             id="city"
             value={formData.city}
             onChange={handleChange}
+            required
           />
           <label htmlFor="state">State</label>
           <input
@@ -130,6 +138,7 @@ const Checkout = () => {
             id="state"
             value={formData.state}
             onChange={handleChange}
+            required
           />
           <label htmlFor="zipcode">Zipcode</label>
           <input
@@ -138,6 +147,7 @@ const Checkout = () => {
             id="zipcode"
             value={formData.zipcode}
             onChange={handleChange}
+            required
           />
           <label htmlFor="apartmentNumber">Apartment Number (Optional)</label>
           <input
@@ -157,6 +167,7 @@ const Checkout = () => {
             id="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
+            required
           />
           <label htmlFor="email">Email Address</label>
           <input
@@ -165,6 +176,7 @@ const Checkout = () => {
             id="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -176,6 +188,7 @@ const Checkout = () => {
             id="cardholderName"
             value={formData.cardholderName}
             onChange={handleChange}
+            required
           />
           <label htmlFor="cardNumber">Card Number</label>
           <input
@@ -184,6 +197,7 @@ const Checkout = () => {
             id="cardNumber"
             value={formData.cardNumber}
             onChange={handleChange}
+            required
           />
           <label htmlFor="cardExpiration">Expiration Date (MM/YYYY)</label>
           <input
@@ -192,6 +206,7 @@ const Checkout = () => {
             id="cardExpiration"
             value={formData.cardExpiration}
             onChange={handleChange}
+            required
           />
           <label htmlFor="cardCvv">CVV</label>
           <input
@@ -200,6 +215,7 @@ const Checkout = () => {
             id="cardCvv"
             value={formData.cardCvv}
             onChange={handleChange}
+            required
           />
         </div>
         <button type="submit" className="checkout-button">

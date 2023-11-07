@@ -148,7 +148,12 @@ export default function Cart() {
                           <p className="mb-2">${total.toFixed(2)}</p>
                         </div>
 
-                        <Link to="/checkout">
+                        <Link
+                          to={{
+                            pathname: "/checkout",
+                            state: { cartItems }, // Passing list in state
+                          }}
+                        >
                           <MDBBtn color="info" block size="lg">
                             <div className="d-flex justify-content-between">
                               <span>${total.toFixed(2)}</span>

@@ -174,7 +174,7 @@ function App() {
         </header>
 
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home  items={items}/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />

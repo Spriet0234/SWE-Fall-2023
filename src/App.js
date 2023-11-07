@@ -122,42 +122,29 @@ function App() {
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
 
         <div className="top-banner">
-          <img className="banner-image" src="./images/Logo.png" alt="Banner Image" />
+          <img className="banner-image" src="../public/Logo.png" alt="Banner Image" />
         </div>
-        {/* Offcanvas Menu Begin */}
-        <div className="offcanvas-menu-overlay" />
-        <div className="offcanvas-menu-wrapper">
-          <div className="offcanvas__option">
-            <div className="offcanvas__links">
-              <a href="#">Sign in</a>
-            </div>
-          </div>
-          <div className="offcanvas__nav__option">
-            <a href="#" className="search-switch"><img src="./images/icon/search.png" alt="" /></a>
-            <a href="#"><img src="./images/icon/heart.png" alt="" /></a>
-            <a href="#"><img src="./images/icon/cart.png" alt="" /> <span>0</span></a>
-            <div className="price">$0.00</div>
-          </div>
-          <div id="mobile-menu-wrap" />
-          <div className="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
-          </div>
-        </div>
-        {/* Offcanvas Menu End */}
+
         {/* Header Section Begin */}
         <header className="header">
           <div className="header__top">
             <div className="container">
               <div className="row">
                 <div className="col-lg-6 col-md-7">
-                  <div className="header__top__left">
-                    <p>Free shipping, 30-day return or refund guarantee.</p>
-                  </div>
                 </div>
                 <div className="col-lg-6 col-md-5">
                   <div className="header__top__right">
-                    <div className="header__top__links">
-                      <a href="#">Sign in</a>
+                    <div className="nav-links">
+                      <div className="searchbar-container">
+                        <SearchBar items={items} />
+                      </div>
+                      <Link className="login-link" to="/login">
+                        <FaUserCircle /> {/* Render the avatar icon */}
+                      </Link>
+                      <Link className="cart-link" to="/cart">
+                        <FaShoppingBag /> {/* Render the shopping bag icon */}
+                      </Link>
+
                     </div>
                   </div>
                 </div>
@@ -168,7 +155,7 @@ function App() {
             <div className="row">
               <div className="col-lg-3 col-md-3">
                 <div className="header__logo">
-                  <img src="./images/Logo.png" alt="" />
+                  <img src="../public/Logo.png" alt="" />
                 </div>
               </div>
               <div className="col-lg-6 col-md-6">
@@ -176,27 +163,10 @@ function App() {
                   <ul>
                     <li className="active"><Link to="/">Home</Link></li>
                     <li><Link to="/Shop">Shop</Link></li>
-                    <li><a href="#">Pages</a>
-                      <ul className="dropdown">
-                        <li><a href="./about.html">About Us</a></li>
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="./about.html">About Us</a></li>
                     <li><a href="./contact.html">Contacts</a></li>
                   </ul>
                 </nav>
-              </div>
-              <div className="col-lg-3 col-md-3">
-                <div className="header__nav__option">
-                  <a href="#" className="search-switch"><img src="./images/icon/search.png" alt="" /></a>
-                  <a href="#"><img src="./images/icon/heart.png" alt="" /></a>
-                  <a href="#"><img src="./images/icon/cart.png" alt="" /> <span>0</span></a>
-                  <div className="price">$0.00</div>
-                </div>
               </div>
             </div>
             <div className="canvas__open"><i className="fa fa-bars" /></div>

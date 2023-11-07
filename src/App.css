@@ -45,8 +45,8 @@
 .navbar {
   background-color: #2d2e31;
   display: flex;
-  justify-content: center; /* Center the links horizontally */
-  align-items: center;
+  justify-content: flex-end; /* Center the links horizontally */
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 

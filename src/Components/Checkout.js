@@ -12,12 +12,14 @@ import {
 } from "mdb-react-ui-kit";
 import { CartContext } from "./CartContext";
 import Item from "./Item";
+import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
   console.log(cartItems);
 
   const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+  console.log(cartItems);
 
   const [formData, setFormData] = useState({
     firstName: "",

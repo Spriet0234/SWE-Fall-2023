@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "../styles/checkout.css";
 import {
@@ -10,8 +10,13 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { CartContext } from "./CartContext";
+import Item from "./Item";
 
 const Checkout = () => {
+  const { cartItems, removeFromCart } = useContext(CartContext);
+  console.log(cartItems);
+
   const [checkoutCompleted, setCheckoutCompleted] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -46,6 +51,7 @@ const Checkout = () => {
     // Assuming data submission is successful, show confirmation page
     setCheckoutCompleted(true);
   };
+
   if (checkoutCompleted) {
     return (
       <div className="checkout-container">
@@ -66,6 +72,24 @@ const Checkout = () => {
           <p>
             <strong>Email:</strong> {formData.email}
           </p>
+          <h5>Your Items:</h5>
+          <div className="items-purchased">
+            {cartItems.map((item) => (
+              <Item
+                key={item.id}
+                id={item.id}
+                image={item.image}
+                name={item.name}
+                price={item.price}
+                description={item.description}
+                quantity={item.quantity}
+                summary={true} // Pass the summary prop to render it in summary mode
+              />
+            ))}
+          </div>
+          <p>
+            <strong>Total Amount:</strong> ${}
+          </p>
         </div>
         <Link to="/" className="back-link">
           Back to Shopping
@@ -73,36 +97,20 @@ const Checkout = () => {
       </div>
     );
   }
-
   return (
     <div className="checkout-container">
       <h1>Checkout</h1>
       <form onSubmit={handleSubmit} className="checkout-form">
         <div className="form-group">
           <h5>Personal Information</h5>
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">Name</label>
           <input
             type="text"
             name="firstName"
             id="firstName"
             value={formData.firstName}
             onChange={handleChange}
-          />
-          <label htmlFor="middleInitial">Middle Initial (Optional)</label>
-          <input
-            type="text"
-            name="middleInitial"
-            id="middleInitial"
-            value={formData.middleInitial}
-            onChange={handleChange}
-          />
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -114,6 +122,7 @@ const Checkout = () => {
             id="streetAddress"
             value={formData.streetAddress}
             onChange={handleChange}
+            required
           />
           <label htmlFor="city">City</label>
           <input
@@ -122,6 +131,7 @@ const Checkout = () => {
             id="city"
             value={formData.city}
             onChange={handleChange}
+            required
           />
           <label htmlFor="state">State</label>
           <input
@@ -130,6 +140,7 @@ const Checkout = () => {
             id="state"
             value={formData.state}
             onChange={handleChange}
+            required
           />
           <label htmlFor="zipcode">Zipcode</label>
           <input
@@ -138,6 +149,7 @@ const Checkout = () => {
             id="zipcode"
             value={formData.zipcode}
             onChange={handleChange}
+            required
           />
           <label htmlFor="apartmentNumber">Apartment Number (Optional)</label>
           <input
@@ -157,6 +169,7 @@ const Checkout = () => {
             id="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
+            required
           />
           <label htmlFor="email">Email Address</label>
           <input
@@ -165,6 +178,7 @@ const Checkout = () => {
             id="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -176,6 +190,7 @@ const Checkout = () => {
             id="cardholderName"
             value={formData.cardholderName}
             onChange={handleChange}
+            required
           />
           <label htmlFor="cardNumber">Card Number</label>
           <input
@@ -184,6 +199,7 @@ const Checkout = () => {
             id="cardNumber"
             value={formData.cardNumber}
             onChange={handleChange}
+            required
           />
           <label htmlFor="cardExpiration">Expiration Date (MM/YYYY)</label>
           <input
@@ -192,6 +208,7 @@ const Checkout = () => {
             id="cardExpiration"
             value={formData.cardExpiration}
             onChange={handleChange}
+            required
           />
           <label htmlFor="cardCvv">CVV</label>
           <input
@@ -200,6 +217,7 @@ const Checkout = () => {
             id="cardCvv"
             value={formData.cardCvv}
             onChange={handleChange}
+            required
           />
         </div>
         <button type="submit" className="checkout-button">

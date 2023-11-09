@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   MDBBtn,
@@ -15,14 +15,27 @@ import { CartContext } from "./CartContext";
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(CartContext);
-  console.log(cartItems);
+  const [discountCode, setDiscountCode] = useState("");
+  const [isDiscountApplied, setIsDiscountApplied] = useState(false);
+
+  // ... existing subtotal, shipping, and tax calculations remain the same
+
+  // Check for discount code and apply 10% discount if applicable
 
   // Calculate the subtotal
-  const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
+  const subtotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   let shipping = 9.99; // Shipping cost
   const taxRate = 0.0825; // Tax rate (8.25%)
-  let total = 0;
+
+  // Apply discount if the code is correct
+  const discountPercentage = isDiscountApplied ? 0.1 : 0;
+  const discountAmount = subtotal * discountPercentage;
+
+  let total = subtotal - discountAmount;
 
   // Calculate the total including tax and shipping
   switch (true) {
@@ -32,11 +45,27 @@ export default function Cart() {
       break;
     case subtotal > 50:
       shipping = 0;
-      total = subtotal + subtotal * taxRate;
+      // No need to subtract the discount again as it's already been applied to 'total'
+      total = total + total * taxRate;
       break;
     default:
-      total = subtotal + shipping + subtotal * taxRate;
+      // No need to subtract the discount again as it's already been applied to 'total'
+      total = total + shipping + total * taxRate;
   }
+
+  const applyDiscount = () => {
+    if (discountCode === "DISCOUNT10" && !isDiscountApplied) {
+      setIsDiscountApplied(true);
+      // Make sure to update the total calculation when the discount is applied
+      total =
+        total -
+        discountAmount +
+        (isDiscountApplied ? 0 : shipping) +
+        total * taxRate;
+    } else {
+      alert("Invalid discount code");
+    }
+  };
 
   const handleRemoveItem = (id) => {
     console.log(id);
@@ -129,6 +158,34 @@ export default function Cart() {
                   </MDBCol>
 
                   <MDBCol lg="5">
+                    <div className="mb-3">
+                      <label htmlFor="discountCode" className="form-label">
+                        Discount Code
+                      </label>
+                      <div className="input-group">
+                        <input
+                          type="text"
+                          id="discountCode"
+                          className="form-control"
+                          placeholder="Enter discount code"
+                          value={discountCode}
+                          onChange={(e) => setDiscountCode(e.target.value)}
+                          disabled={isDiscountApplied}
+                        />
+                        <MDBBtn
+                          color="success"
+                          onClick={applyDiscount}
+                          disabled={isDiscountApplied}
+                        >
+                          Apply
+                        </MDBBtn>
+                      </div>
+                      {isDiscountApplied && (
+                        <div className="alert alert-success mt-2">
+                          Discount Applied!
+                        </div>
+                      )}
+                    </div>
                     <MDBCard className="bg-primary text-white rounded-3">
                       <MDBCardBody>
                         <hr />
@@ -136,6 +193,10 @@ export default function Cart() {
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Subtotal</p>
                           <p className="mb-2">${subtotal.toFixed(2)}</p>
+                          <p className="mb-2">Discount</p>
+                          <p className="mb-2">
+                            -${(total * discountPercentage).toFixed(2)}
+                          </p>
                         </div>
 
                         <div className="d-flex justify-content-between">
@@ -148,12 +209,7 @@ export default function Cart() {
                           <p className="mb-2">${total.toFixed(2)}</p>
                         </div>
 
-                        <Link
-                          to={{
-                            pathname: "/checkout",
-                            state: { cartItems }, // Passing list in state
-                          }}
-                        >
+                        <Link to="/checkout">
                           <MDBBtn color="info" block size="lg">
                             <div className="d-flex justify-content-between">
                               <span>${total.toFixed(2)}</span>

@@ -1,47 +1,50 @@
 import React, { useState } from "react";
 import "../styles/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+import { useAuth } from "./AuthProvider";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { isLoggedIn, logint, logout } = useAuth();
 
   const handleRegister = async () => {
     try {
       const response = await axios.post(
-        'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',  // Use the correct registration endpoint
+        "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev", // Use the correct registration endpoint
         {
           username: email,
-          password: password 
+          password: password,
         }
       );
 
-      console.log('User registered:', response.data.message);
+      console.log("User registered:", response.data.message);
     } catch (error) {
-      console.error('Error registering user:', error);
+      console.error("Error registering user:", error);
     }
   };
 
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',  // Use the correct login endpoint
+        "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev", // Use the correct login endpoint
         {
           username: email,
-          password: password
+          password: password,
         }
       );
 
       if (response.status === 200) {
-        console.log('Login successful');
-        navigate('/'); // Redirect to the home page upon successful login
+        console.log("Login successful");
+        logint();
+        //navigate('/'); // Redirect to the home page upon successful login
       } else {
-        console.log('Login failed:', response.data.message);
+        console.log("Login failed:", response.data.message);
       }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
     }
   };
 
@@ -166,7 +169,20 @@ const LoginPage = () => {
     alert("email was send to your email. Check it in 24hr. \n Thanks");
     document.getElementById("fe").value = "";
   }
-
+  if (isLoggedIn) {
+    return (
+      <div>
+        <div>Login Successful</div>
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Return to home
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="login-container">
@@ -196,5 +212,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-

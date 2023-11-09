@@ -14,6 +14,7 @@ import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";
 import WomensClothing from "./Components/WomensClothing";
 import AddItemForm from "./Components/AddItemForm";
+import { AuthProvider } from "./Components/AuthProvider"; // adjust the import path as necessary
 
 import "./styles/bootstrap.min.css";
 import "./styles/font-awesome.min.css";
@@ -41,7 +42,6 @@ function App() {
       name: "T-Shirt",
       price: 18.99,
       quantity: 1,
-
       description:
         "A classic wardrobe staple, this t-shirt is made from breathable, 100% cotton fabric with a ribbed crew neck and short sleeves. Its timeless design ensures comfort and versatility for everyday wear.",
       image:
@@ -110,96 +110,104 @@ function App() {
     console.log(items);
   };
   return (
-    <CartProvider>
-      <Router>
-        <meta charSet="UTF-8" />
-        <meta name="description" content="Male_Fashion Template" />
-        <meta name="keywords" content="Male_Fashion, unica, creative, html" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* Google Font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-
-        <div className="top-banner">
-          <img
-            className="banner-image"
-            src="../public/Logo.png"
-            alt="Banner Image"
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <meta charSet="UTF-8" />
+          <meta name="description" content="Male_Fashion Template" />
+          <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
           />
-        </div>
+          {/* Google Font */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+            rel="stylesheet"
+          />
 
-        {/* Header Section Begin */}
-        <header className="header">
-          <div className="header__top">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-6 col-md-7"></div>
-                <div className="col-lg-6 col-md-5">
-                  <div className="header__top__right">
-                    <div className="nav-links">
-                      <div className="searchbar-container">
-                        <SearchBar items={items} />
+          <div className="top-banner">
+            <img
+              className="banner-image"
+              src="../public/Logo.png"
+              alt="Banner Image"
+            />
+          </div>
+
+          {/* Header Section Begin */}
+          <header className="header">
+            <div className="header__top">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-6 col-md-7"></div>
+                  <div className="col-lg-6 col-md-5">
+                    <div className="header__top__right">
+                      <div className="nav-links">
+                        <div className="searchbar-container">
+                          <SearchBar items={items} />
+                        </div>
+                        <Link className="login-link" to="/login">
+                          <FaUserCircle /> {/* Render the avatar icon */}
+                        </Link>
+                        <Link className="cart-link" to="/cart">
+                          <FaShoppingBag /> {/* Render the shopping bag icon */}
+                        </Link>
                       </div>
-                      <Link className="login-link" to="/login">
-                        <FaUserCircle /> {/* Render the avatar icon */}
-                      </Link>
-                      <Link className="cart-link" to="/cart">
-                        <FaShoppingBag /> {/* Render the shopping bag icon */}
-                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-3 col-md-3">
-                <div className="header__logo">
-                  <img src="../public/Logo.png" alt="" />
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-3 col-md-3">
+                  <div className="header__logo">
+                    <img src="../public/Logo.png" alt="" />
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6">
+                  <nav className="header__menu mobile-menu">
+                    <ul>
+                      <li className="active">
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li>
+                        <Link to="/Shop">Shop</Link>
+                      </li>
+                      <li>
+                        <Link to="/about-us">About Us</Link>
+                      </li>
+                      <li>
+                        <Link to="/contacts">Contacts</Link>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
-              <div className="col-lg-6 col-md-6">
-                <nav className="header__menu mobile-menu">
-                  <ul>
-                    <li className="active">
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                      <Link to="/Shop">Shop</Link>
-                    </li>
-                    <li>
-                      <a href="./about.html">About Us</a>
-                    </li>
-                    <li>
-                      <a href="./contact.html">Contacts</a>
-                    </li>
-                  </ul>
-                </nav>
+              <div className="canvas__open">
+                <i className="fa fa-bars" />
               </div>
             </div>
-            <div className="canvas__open">
-              <i className="fa fa-bars" />
-            </div>
-          </div>
-        </header>
+          </header>
 
-        <Routes>
-          <Route path="/" element={<Home items={items} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/mens-clothing" element={<MensClothing />} />
-          <Route path="/womens-clothing" element={<WomensClothing />} />
-          <Route path="/item-details/:id" element={<ItemDetails />} />
-          <Route path="/Shop" element={<Shop />} />
-          <Route path="/add-item" element={<AddItemForm addItem={addItem} />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+          <Routes>
+            <Route path="/" element={<Home items={items} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/mens-clothing" element={<MensClothing />} />
+            <Route path="/womens-clothing" element={<WomensClothing />} />
+            <Route path="/item-details/:id" element={<ItemDetails />} />
+            <Route path="/Shop" element={<Shop />} />
+            <Route
+              path="/add-item"
+              element={<AddItemForm addItem={addItem} />}
+            />
+          </Routes>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

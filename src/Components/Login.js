@@ -12,41 +12,70 @@ const LoginPage = () => {
 
   const handleRegister = async () => {
     try {
+      // Perform the login request to your backend API
       const response = await axios.post(
-        "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev", // Use the correct registration endpoint
-        {
-          username: email,
-          password: password,
-        }
+          'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',
+          {
+              username: email,
+              password: password
+          }
       );
 
-      console.log("User registered:", response.data.message);
-    } catch (error) {
-      console.error("Error registering user:", error);
-    }
+      console.log('Response:', response); // Log the entire response for inspection
+
+      // Parse the response body as JSON
+      const responseBody = JSON.parse(response.data.body);
+
+      if (response.status === 200) {
+          // Login successful
+          console.log('Login successful');
+          console.log('Response message:', responseBody.message); // Access the response message
+          // Redirect to the home page or the desired destination
+          navigate('/'); // Use the navigate function to redirect
+      } else {
+          // Handle other response statuses if needed
+          console.log('Login failed:', responseBody.message);
+      }
+  } catch (error) {
+      // Handle login error
+      console.error('Login error:', error);
+  }
   };
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev", // Use the correct login endpoint
-        {
-          username: email,
-          password: password,
-        }
-      );
+        // Perform the login request to your backend API
+        const response = await axios.post(
+            'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',
+            {
+                username: email,
+                password: password
+            }
+        );
 
-      if (response.status === 200) {
-        console.log("Login successful");
-        logint();
-        //navigate('/'); // Redirect to the home page upon successful login
-      } else {
-        console.log("Login failed:", response.data.message);
-      }
+        console.log('Response:', response); // Log the entire response for inspection
+
+        // Parse the response body as JSON
+        const responseBody = JSON.parse(response.data.body);
+
+        if (response.status === 200) {
+            // Login successful
+            console.log('Login successful');
+            console.log('Response message:', responseBody.message); // Access the response message
+            // Redirect to the home page or the desired destination
+            logint();
+            //navigate('/'); // Use the navigate function to redirect
+        } else {
+            // Handle other response statuses if needed
+            console.log('Login failed:', responseBody.message);
+        }
     } catch (error) {
-      console.error("Login error:", error);
+        // Handle login error
+        console.error('Login error:', error);
     }
-  };
+};
+
+
 
   var emailArray = [];
   var passwordArray = [];

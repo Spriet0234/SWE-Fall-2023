@@ -127,11 +127,7 @@ function App() {
           />
 
           <div className="top-banner">
-            <img
-              className="banner-image"
-              src="../public/Logo.png"
-              alt="Banner Image"
-            />
+            <img className="banner-image" src="/Logo.png" alt="Banner Image" />
           </div>
 
           {/* Header Section Begin */}

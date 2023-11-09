@@ -1,15 +1,50 @@
 import React, { useState } from "react";
 import "../styles/LoginPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // Handle your login logic here, e.g., API call, form validation, etc.
-    console.log("Logging in with", email, password);
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post(
+        'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',  // Use the correct registration endpoint
+        {
+          username: email,
+          password: password 
+        }
+      );
+
+      console.log('User registered:', response.data.message);
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
   };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',  // Use the correct login endpoint
+        {
+          username: email,
+          password: password
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('Login successful');
+        navigate('/'); // Redirect to the home page upon successful login
+      } else {
+        console.log('Login failed:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
+
   var emailArray = [];
   var passwordArray = [];
 
@@ -132,6 +167,7 @@ const LoginPage = () => {
     document.getElementById("fe").value = "";
   }
 
+
   return (
     <div className="login-container">
       <h2>Login</h2>
@@ -149,9 +185,7 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Login</button>
-        {/* <a href="#forgot-password" className="forgot-password-link">
-          Forgot Password?
-        </a> */}
+        <button onClick={handleRegister}>Register</button>
         <div style={{ marginTop: 20 }}>
           <span>Don't have an account? </span>
           <Link to="/register">Register</Link>
@@ -162,3 +196,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+

@@ -70,10 +70,27 @@ function App() {
   }, []); // Empty dependency array ensures that this effect runs only once, similar to componentDidMount
 
   const addItem = (newItem) => {
-    setItems((prevItems) => [...prevItems, { ...newItem, id: prevItems.length + 1 }]);
+    setItems((prevItems) => [
+      ...prevItems,
+      { ...newItem, id: prevItems.length + 1 },
+    ]);
   };
 
   console.log("Items in App component:", items);
+  function transformNewItemToOldFormat(newItem) {
+    return {
+      id: newItem.ID.S, // Assuming that ID is unique and a string
+      name: newItem.ITEM.S,
+      price: parseFloat(newItem.PRICE.S), // Convert string to float
+      quantity: parseInt(newItem.QTY.S, 10), // Convert string to integer
+      description: newItem.DESCRIPTION.S,
+      image: newItem.IMAGE.S,
+    };
+  }
+
+  const newItems = items;
+
+  const oItems = newItems.map(transformNewItemToOldFormat);
 
   return (
     <AuthProvider>
@@ -106,7 +123,7 @@ function App() {
                     <div className="header__top__right">
                       <div className="nav-links">
                         <div className="searchbar-container">
-                          <SearchBar items={items} />
+                          <SearchBar items={oItems} />
                         </div>
                         <Link className="login-link" to="/login">
                           <FaUserCircle /> {/* Render the avatar icon */}
@@ -153,7 +170,7 @@ function App() {
           </header>
 
           <Routes>
-            <Route path="/" element={<Home items={items} />} />
+            <Route path="/" element={<Home items={oItems} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
@@ -162,6 +179,7 @@ function App() {
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
             <Route path="/Shop" element={<Shop />} />
+            <Route path="/search-comp" element={<SearchComp />} />
             <Route
               path="/add-item"
               element={<AddItemForm addItem={addItem} />}

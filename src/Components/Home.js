@@ -30,7 +30,7 @@ const Home = ({ items }) => {
   return (
     <div>
       {/* Header Section End */}
-      {/* Hero Section Begin */}
+      {/* 
       <section className="hero">
         <div className="hero__slider owl-carousel">
           <div
@@ -109,8 +109,7 @@ const Home = ({ items }) => {
           </div>
         </div>
       </section>
-      {/* Hero Section End */}
-      {/* Banner Section Begin */}
+     
       <section className="banner spad">
         <div className="container">
           <div className="row">
@@ -124,7 +123,7 @@ const Home = ({ items }) => {
           </div>
         </div>
       </section>
-      {/* Banner Section End */}
+       */}
       {/* Product Section Begin */}
       <section className="product spad">
         <div className="container">
@@ -149,6 +148,7 @@ const Home = ({ items }) => {
                   price={item.price}
                   description={item.description}
                   quantity={item.quantity}
+                  inCart={item.inCart}
                   onClick={() => onProductClick(item.description)}
                 />
               </div>

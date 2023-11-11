@@ -49,7 +49,7 @@ function App() {
       // Parse the JSON string in the body property
       const responseBody = JSON.parse(response.data.body);
 
-      console.log("Response Body:", responseBody);
+      //console.log("Response Body:", responseBody);
 
       // Move the setItems call outside the fetchItems function
       setItems(responseBody.Items);
@@ -78,19 +78,25 @@ function App() {
 
   console.log("Items in App component:", items);
   function transformNewItemToOldFormat(newItem) {
+    console.log(newItem.QTY.S);
     return {
       id: newItem.ID.S, // Assuming that ID is unique and a string
       name: newItem.ITEM.S,
-      price: parseFloat(newItem.PRICE.S), // Convert string to float
-      quantity: parseInt(newItem.QTY.S, 10), // Convert string to integer
+      price: parseFloat(newItem.PRICE.N), // Convert string to float
+      quantity: parseInt(newItem.QTY.N, 10), // Convert string to integer
       description: newItem.DESCRIPTION.S,
       image: newItem.IMAGE.S,
+      inCart: 1,
     };
   }
 
   const newItems = items;
 
   const oItems = newItems.map(transformNewItemToOldFormat);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthProvider>

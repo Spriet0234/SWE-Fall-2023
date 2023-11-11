@@ -23,8 +23,11 @@ export default function Cart() {
   // Check for discount code and apply 10% discount if applicable
 
   // Calculate the subtotal
+  cartItems.forEach(function (item) {
+    console.log(item.inCart);
+  });
   const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.price * item.inCart, // Use inCart property, defaulting to 0 if it's undefined
     0
   );
 
@@ -135,7 +138,7 @@ export default function Cart() {
                                   tag="h5"
                                   className="fw-normal mb-0"
                                 >
-                                  {item.quantity}
+                                  {item.inCart}
                                 </MDBTypography>
                               </div>
                               <div style={{ width: "80px" }}>
@@ -192,11 +195,20 @@ export default function Cart() {
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Subtotal</p>
+
                           <p className="mb-2">${subtotal.toFixed(2)}</p>
+                        </div>
+                        <div className="d-flex justify-content-between">
                           <p className="mb-2">Discount</p>
+
                           <p className="mb-2">
-                            -${(total * discountPercentage).toFixed(2)}
+                            ${(total * discountPercentage).toFixed(2)}
                           </p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">{`Taxes (8.25%)`}</p>
+
+                          <p className="mb-2">${(total * 0.0825).toFixed(2)}</p>
                         </div>
 
                         <div className="d-flex justify-content-between">

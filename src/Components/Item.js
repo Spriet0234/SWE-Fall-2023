@@ -12,7 +12,16 @@ import "../styles/owl.carousel.min.css";
 import "../styles/slicknav.min.css";
 import "../styles/style.css";
 
-const Item = ({ id, image, name, price, description, quantity, summary }) => {
+const Item = ({
+  id,
+  image,
+  name,
+  price,
+  description,
+  quantity,
+  summary,
+  inCart,
+}) => {
   // Added 'description' prop
   const navigate = useNavigate();
   const { setCartItems } = useContext(CartContext);
@@ -21,14 +30,14 @@ const Item = ({ id, image, name, price, description, quantity, summary }) => {
     const itemId = new Date().getTime();
     setCartItems((prevItems) => [
       ...prevItems,
-      { id: itemId, name, price, description, quantity, image },
+      { id: itemId, name, price, description, quantity, image, inCart },
     ]);
   };
 
   const goToDetails = () => {
     navigate(`/item-details/${id}`, {
       state: {
-        itemData: { id, image, name, price, description, quantity }, // Pass the full item data
+        itemData: { id, image, name, price, description, quantity, inCart }, // Pass the full item data
       },
     });
   };

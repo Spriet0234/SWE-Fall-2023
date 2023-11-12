@@ -5,6 +5,10 @@ import axios from "axios";
 import { useAuth } from "./AuthProvider";
 
 const LoginPage = () => {
+  const [loginStatus, setLoginStatus] = useState(""); // New state for login status
+
+  const [showError, setShowError] = useState(false); // New state for showing error
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -14,68 +18,71 @@ const LoginPage = () => {
     try {
       // Perform the login request to your backend API
       const response = await axios.post(
-          'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',
-          {
-              username: email,
-              password: password
-          }
+        "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev",
+        {
+          username: email,
+          password: password,
+        }
       );
 
-      console.log('Response:', response); // Log the entire response for inspection
+      console.log("Response:", response); // Log the entire response for inspection
 
       // Parse the response body as JSON
       const responseBody = JSON.parse(response.data.body);
 
       if (response.status === 200) {
-          // Login successful
-          console.log('Login successful');
-          console.log('Response message:', responseBody.message); // Access the response message
-          // Redirect to the home page or the desired destination
-          navigate('/'); // Use the navigate function to redirect
+        // Login successful
+        console.log("Login successful");
+        console.log("Response message:", responseBody.message); // Access the response message
+        // Redirect to the home page or the desired destination
+        navigate("/"); // Use the navigate function to redirect
       } else {
-          // Handle other response statuses if needed
-          console.log('Login failed:', responseBody.message);
+        // Handle other response statuses if needed
+        console.log("Login failed:", responseBody.message);
       }
-  } catch (error) {
+    } catch (error) {
       // Handle login error
-      console.error('Login error:', error);
-  }
+      console.error("Login error:", error);
+    }
   };
 
   const handleLogin = async () => {
     try {
-        // Perform the login request to your backend API
-        const response = await axios.post(
-            'https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev',
-            {
-                username: email,
-                password: password
-            }
-        );
-
-        console.log('Response:', response); // Log the entire response for inspection
-
-        // Parse the response body as JSON
-        const responseBody = JSON.parse(response.data.body);
-
-        if (response.status === 200) {
-            // Login successful
-            console.log('Login successful');
-            console.log('Response message:', responseBody.message); // Access the response message
-            // Redirect to the home page or the desired destination
-            logint();
-            //navigate('/'); // Use the navigate function to redirect
-        } else {
-            // Handle other response statuses if needed
-            console.log('Login failed:', responseBody.message);
+      // Perform the login request to your backend API
+      const response = await axios.post(
+        "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev",
+        {
+          username: email,
+          password: password,
         }
+      );
+
+      console.log("Response:", response); // Log the entire response for inspection
+
+      // Parse the response body as JSON
+      const responseBody = JSON.parse(response.data.body);
+
+      if (response.status === 200) {
+        // Login successful
+        console.log("Login successful");
+        console.log("Response message:", responseBody.message); // Access the response message
+        // Redirect to the home page or the desired destination
+        if (responseBody.message == "Login successful") {
+          logint();
+        } else if (responseBody.message == "Incorrect password") {
+          setShowError(true);
+        }
+
+        //navigate('/'); // Use the navigate function to redirect
+      } else {
+        // Handle other response statuses if needed
+        console.log("Login failed:", responseBody.message);
+      }
     } catch (error) {
-        // Handle login error
-        console.error('Login error:', error);
+      // Handle login error
+      console.error("Login error:", error);
     }
-};
-
-
+  };
 
   var emailArray = [];
   var passwordArray = [];
@@ -200,14 +207,15 @@ const LoginPage = () => {
   }
   if (isLoggedIn) {
     return (
-      <div>
-        <div>Login Successful</div>
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <h2>Welcome, {`username`}!</h2>
+        <p>You have successfully logged in.</p>
         <button
-          onClick={() => {
-            navigate("/");
-          }}
+          className="btn"
+          onClick={() => navigate("/")}
+          style={{ marginTop: "10px" }}
         >
-          Return to home
+          Return to Home
         </button>
       </div>
     );
@@ -217,20 +225,22 @@ const LoginPage = () => {
     <div className="login-container">
       <h2>Login</h2>
       <div className="login-form">
+        <div>Username</div>
         <input
           type="email"
-          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <div>Password</div>
         <input
           type="password"
-          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {showError && (
+          <div style={{ color: "red" }}>Incorrect username or password</div>
+        )}
         <button onClick={handleLogin}>Login</button>
-        <button onClick={handleRegister}>Register</button>
         <div style={{ marginTop: 20 }}>
           <span>Don't have an account? </span>
           <Link to="/register">Register</Link>

@@ -201,12 +201,10 @@ export default function Cart() {
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Discount</p>
 
-                          <p className="mb-2">
-                            ${(total * discountPercentage).toFixed(2)}
-                          </p>
+                          <p className="mb-2">${discountAmount.toFixed(2)}</p>
                         </div>
                         <div className="d-flex justify-content-between">
-                          <p className="mb-2">{`Taxes (8.25%)`}</p>
+                          <p className="mb-2">{`Tax (8.25%)`}</p>
 
                           <p className="mb-2">${(total * 0.0825).toFixed(2)}</p>
                         </div>

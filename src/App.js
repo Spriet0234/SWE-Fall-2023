@@ -3,6 +3,8 @@ import { FaShoppingBag } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { NavLink } from "react-router-dom";
+
 import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
@@ -153,7 +155,7 @@ function App() {
                 <div className="col-lg-6 col-md-6">
                   <nav className="header__menu mobile-menu">
                     <ul>
-                      <li className="active">
+                      <li>
                         <Link to="/">Home</Link>
                       </li>
                       <li>

@@ -48,3 +48,56 @@ input[type="email"] {
 .back-link:hover {
   color: #0056b3;
 }
+.checkout-container2 {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.checkout-container2 h1 {
+  color: black;
+  margin-bottom: 30px;
+}
+
+.confirmation-details2 {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.confirmation-details2 p,
+.confirmation-details2 h5 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.confirmation-details2 strong {
+  color: #000;
+}
+
+.items-purchased2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.back-link2 {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.back-link2:hover {
+  background-color: #0069d9;
+}

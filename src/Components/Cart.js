@@ -12,11 +12,17 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 import { CartContext } from "./CartContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(CartContext);
   const [discountCode, setDiscountCode] = useState("");
   const [isDiscountApplied, setIsDiscountApplied] = useState(false);
+  const [tot, setTot] = useState(0);
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    navigate("/checkout", { state: { total: total.toFixed(2) } });
+  };
 
   // ... existing subtotal, shipping, and tax calculations remain the same
 
@@ -219,17 +225,20 @@ export default function Cart() {
                           <p className="mb-2">${total.toFixed(2)}</p>
                         </div>
 
-                        <Link to="/checkout">
-                          <MDBBtn color="info" block size="lg">
-                            <div className="d-flex justify-content-between">
-                              <span>${total.toFixed(2)}</span>
-                              <span>
-                                Checkout{" "}
-                                <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                              </span>
-                            </div>
-                          </MDBBtn>
-                        </Link>
+                        <MDBBtn
+                          color="info"
+                          block
+                          size="lg"
+                          onClick={handleCheckout}
+                        >
+                          <div className="d-flex justify-content-between">
+                            <span>${total.toFixed(2)}</span>
+                            <span>
+                              Checkout{" "}
+                              <i className="fas fa-long-arrow-alt-right ms-2"></i>
+                            </span>
+                          </div>
+                        </MDBBtn>
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>

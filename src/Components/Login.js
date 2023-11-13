@@ -211,7 +211,7 @@ const LoginPage = () => {
         <h2>Welcome, {`username`}!</h2>
         <p>You have successfully logged in.</p>
         <button
-          className="btn"
+          className="btnr"
           onClick={() => navigate("/")}
           style={{ marginTop: "10px" }}
         >

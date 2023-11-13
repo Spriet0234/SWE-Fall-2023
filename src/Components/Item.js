@@ -50,7 +50,6 @@ const Item = ({
         <p className="item-price">
           ${price.toFixed(2)} x {quantity}
         </p>
-        {/* Display the total for this item */}
         <p className="item-total">${(price * quantity).toFixed(2)}</p>
       </div>
     );

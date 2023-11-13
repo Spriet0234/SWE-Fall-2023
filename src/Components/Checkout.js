@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+
 import "../styles/checkout.css";
 import {
   MDBBtn,
@@ -13,10 +14,12 @@ import {
 import { CartContext } from "./CartContext";
 import Item from "./Item";
 import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Checkout = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
-  console.log(cartItems);
+  const location = useLocation();
+  const total = location.state?.total;
 
   const [checkoutCompleted, setCheckoutCompleted] = useState(false);
   console.log(cartItems);
@@ -56,9 +59,9 @@ const Checkout = () => {
 
   if (checkoutCompleted) {
     return (
-      <div className="checkout-container">
+      <div className="checkout-container2">
         <h1>Thank you for your purchase!</h1>
-        <div className="confirmation-details">
+        <div className="confirmation-details2">
           <p>
             <strong>Name:</strong> {formData.firstName} {formData.middleInitial}{" "}
             {formData.lastName}
@@ -75,7 +78,7 @@ const Checkout = () => {
             <strong>Email:</strong> {formData.email}
           </p>
           <h5>Your Items:</h5>
-          <div className="items-purchased">
+          <div className="items-purchased2">
             {cartItems.map((item) => (
               <Item
                 key={item.id}
@@ -90,10 +93,10 @@ const Checkout = () => {
             ))}
           </div>
           <p>
-            <strong>Total Amount:</strong> ${}
+            <strong>{`Total Amount: $${total}`}</strong>
           </p>
         </div>
-        <Link to="/" className="back-link">
+        <Link to="/" className="back-link2">
           Back to Shopping
         </Link>
       </div>

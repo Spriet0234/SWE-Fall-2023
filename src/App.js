@@ -186,7 +186,7 @@ function App() {
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
-            <Route path="/Shop" element={<Shop />} />
+            <Route path="/Shop" element={<SearchComp items={oItems} />} />
             <Route path="/search-comp" element={<SearchComp />} />
             <Route
               path="/add-item"

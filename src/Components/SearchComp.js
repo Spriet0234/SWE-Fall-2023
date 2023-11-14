@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Item from "./Item";
+import SearchBar from "./SearchBar";
+import "../styles/SearchComp.css";
 
-export default function SearchComp() {
+export default function SearchComp({ items }) {
   const location = useLocation();
   const initialItems = location.state?.filteredItems || [];
 
@@ -41,29 +43,37 @@ export default function SearchComp() {
   };
 
   return (
-    <div>
-      <div>
-        <label>Sort by price:</label>
-        <select
-          value={priceFilter}
-          onChange={(e) => setPriceFilter(e.target.value)}
-        >
-          <option value="">Select...</option>
-          <option value="low-to-high">Low to High</option>
-          <option value="high-to-low">High to Low</option>
-        </select>
+    <div className="component-container">
+      <SearchBar items={items} />
 
-        <label>
-          <input
-            type="checkbox"
-            checked={availableFilter}
-            onChange={(e) => setAvailableFilter(e.target.checked)}
-          />
-          Show available items only
-        </label>
+      <div className="filter-container">
+        <div>
+          <label>Sort by price:</label>
+          <select
+            className="sort-select"
+            value={priceFilter}
+            onChange={(e) => setPriceFilter(e.target.value)}
+          >
+            <option value="">Select...</option>
+            <option value="low-to-high">Low to High</option>
+            <option value="high-to-low">High to Low</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="availability-checkbox">
+            <input
+              type="checkbox"
+              checked={availableFilter}
+              onChange={(e) => setAvailableFilter(e.target.checked)}
+            />
+            Show available items only
+          </label>
+        </div>
       </div>
-      <div>Results:</div>
-      <section style={{ display: "flex", flexWrap: "wrap", margin: 10 }}>
+
+      <div className="results-heading">Results:</div>
+      <section className="items-display">
         {filteredItems.map((item) => (
           <div key={item.id} className="item-container">
             <Item

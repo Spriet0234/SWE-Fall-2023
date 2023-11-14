@@ -29,133 +29,33 @@ const Home = ({ items }) => {
 
   return (
     <div>
-      {/* Header Section End */}
-      {/* 
-      <section className="hero">
-        <div className="hero__slider owl-carousel">
-          <div
-            className="hero__items set-bg"
-            data-setbg="../images/hero/hero-1.jpg"
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xl-5 col-lg-7 col-md-8">
-                  <div className="hero__text">
-                    <h6>Summer Collection</h6>
-                    <h2>Fall - Winter Collections 2030</h2>
-                    <p>
-                      A specialist label creating luxury essentials. Ethically
-                      crafted with an unwavering commitment to exceptional
-                      quality.
-                    </p>
-                    <a href="#" className="primary-btn">
-                      Shop now <span className="arrow_right" />
-                    </a>
-                    <div className="hero__social">
-                      <a href="#">
-                        <i className="fa fa-facebook" />
-                      </a>
-                      <a href="#">
-                        <i className="fa fa-twitter" />
-                      </a>
-                      <a href="#">
-                        <i className="fa fa-pinterest" />
-                      </a>
-                      <a href="#">
-                        <i className="fa fa-instagram" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="hero__items set-bg"
-            data-setbg="../images/hero/hero-2.jpg"
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xl-5 col-lg-7 col-md-8">
-                  <div className="hero__text">
-                    <h6>Summer Collection</h6>
-                    <h2>Fall - Winter Collections 2030</h2>
-                    <p>
-                      A specialist label creating luxury essentials. Ethically
-                      crafted with an unwavering commitment to exceptional
-                      quality.
-                    </p>
-                    <a href="#" className="primary-btn">
-                      Shop now <span className="arrow_right" />
-                    </a>
-                    <div className="hero__social">
-                      <a href="#">
-                        <i className="fa fa-facebook" />
-                      </a>
-                      <a href="#">
-                        <i className="fa fa-twitter" />
-                      </a>
-                      <a href="#">
-                        <i className="fa fa-pinterest" />
-                      </a>
-                      <a href="#">
-                        <i className="fa fa-instagram" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-     
-      <section className="banner spad">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-5">
-              <div className="banner__item banner__item--middle">
-                <div className="banner__item__pic">
-                  <img src="../images/banner/banner-2.jpg" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-       */}
-      {/* Product Section Begin */}
-      <section className="product spad">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <ul className="filter__controls">
-                <li className="active" data-filter="*">
-                  Best Sellers
-                </li>
+      <div className="home-container">
+        <section className="product-section">
+          <div className="product-container">
+            <div className="filter-controls">
+              <ul>
+                <h3 style={{ padding: 20 }}>Best Sellers</h3>
               </ul>
             </div>
-          </div>
-        </div>
 
-        <div className="row product__filter">
-          {filteredItems?.map((item) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-              <div key={item.id}>
-                <Item
-                  image={item.image}
-                  name={item.name}
-                  price={item.price}
-                  description={item.description}
-                  quantity={item.quantity}
-                  inCart={item.inCart}
-                  onClick={() => onProductClick(item.description)}
-                />
-              </div>
+            <div className="product-display">
+              {filteredItems?.map((item) => (
+                <div key={item.id} className="product-item">
+                  <Item
+                    image={item.image}
+                    name={item.name}
+                    price={item.price}
+                    description={item.description}
+                    quantity={item.quantity}
+                    inCart={item.inCart}
+                    onClick={() => onProductClick(item.description)}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
       {/* Product Section End */}
       {/* Footer Section Begin */}
       <footer className="footer">
@@ -240,8 +140,7 @@ const Home = ({ items }) => {
           </div>
         </div>
       </footer>
-      {/* Footer Section End */}
-      {/* Search Begin */}
+
       <div className="search-model">
         <div className="h-100 d-flex align-items-center justify-content-center">
           <div className="search-close-switch">+</div>

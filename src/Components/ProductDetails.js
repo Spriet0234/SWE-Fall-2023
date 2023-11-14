@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import "../styles/ProductDetails.css";
 
 const ItemDetails = () => {
   const navigate = useNavigate();
@@ -20,13 +21,16 @@ const ItemDetails = () => {
   console.log(item.description);
 
   return (
-    <div>
-      <img src={item.image} alt={item.name} />
-      <h2>{item.name}</h2>
-      <p>${item.price.toFixed(2)}</p> <p>{item.description}</p>
-      <p>{`Available: ${item.quantity}`}</p>
-      <div>
-        <button onClick={goBack}>Back</button>
+    <div className="product-details">
+      <img className="product-image" src={item.image} alt={item.name} />
+      <h2 className="product-title">{item.name}</h2>
+      <p className="product-price">${item.price.toFixed(2)}</p>
+      <p className="product-description">{item.description}</p>
+      <p className="product-availability">{`Available: ${item.quantity}`}</p>
+      <div className="action-buttons">
+        <button className="back-button" onClick={goBack}>
+          Back
+        </button>
         {/* ... other component content ... */}
       </div>
     </div>

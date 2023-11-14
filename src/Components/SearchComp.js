@@ -44,7 +44,7 @@ export default function SearchComp({ items }) {
 
   return (
     <div className="component-container">
-      <SearchBar items={items} />
+      {/* <SearchBar items={items} /> */}
 
       <div className="filter-container">
         <div>

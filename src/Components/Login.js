@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./AuthProvider";
+import { CartContext } from "./CartContext";
 
 const LoginPage = () => {
+  const { userName, setUser } = useContext(CartContext);
+
   const [loginStatus, setLoginStatus] = useState(""); // New state for login status
 
   const [showError, setShowError] = useState(false); // New state for showing error
@@ -47,6 +50,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async () => {
+    setUser(email);
     try {
       // Perform the login request to your backend API
       const response = await axios.post(
@@ -208,7 +212,7 @@ const LoginPage = () => {
   if (isLoggedIn) {
     return (
       <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <h2>Welcome, {`username`}!</h2>
+        <h2>Welcome, {`${userName}`}!</h2>
         <p>You have successfully logged in.</p>
         <button
           className="btnr"

@@ -29,9 +29,7 @@ export default function Cart() {
   // Check for discount code and apply 10% discount if applicable
 
   // Calculate the subtotal
-  cartItems.forEach(function (item) {
-    console.log(item.inCart);
-  });
+  cartItems.forEach(function (item) {});
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.inCart, // Use inCart property, defaulting to 0 if it's undefined
     0
@@ -77,7 +75,6 @@ export default function Cart() {
   };
 
   const handleRemoveItem = (id) => {
-    console.log(id);
     removeFromCart(id); // Call the removeFromCart function from your context
   };
 

@@ -62,9 +62,9 @@ const Item = ({
         <h3 className="product__item__text">{name}</h3>
         <p className="item-price">${price.toFixed(2)}</p>
       </div>
-      <div className="cart-button" onClick={addToCart}>
+      {/* <div className="cart-button" onClick={addToCart}>
         Add to Cart
-      </div>
+      </div> */}
     </div>
   );
 };

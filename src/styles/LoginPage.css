@@ -48,3 +48,47 @@
 .register-option {
   margin-top: 20;
 }
+.login-success {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-success h2 {
+  color: #4caf50;
+  margin-bottom: 15px;
+}
+
+.login-success p {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-success button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-success button:hover {
+  background-color: #45a049;
+}
+.btnr {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  max-width: 300px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}

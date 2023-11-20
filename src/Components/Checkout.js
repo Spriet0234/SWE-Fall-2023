@@ -70,13 +70,19 @@ const Checkout = () => {
       if (response.status === 200) {
         // Assuming data submission is successful, show confirmation page
         setCheckoutCompleted(true);
+        // Log success message to the console
+        console.log("Checkout successful!");
       } else {
         // Handle error if the request was not successful
         console.error("Error submitting data:", response.statusText);
+        // Log failure message to the console
+        console.log("Checkout failed!");
       }
     } catch (error) {
       // Handle Axios-specific error
       console.error("Axios error:", error.message);
+      // Log failure message to the console
+      console.log("Checkout failed!");
     }
   };
 

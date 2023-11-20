@@ -1,6 +1,6 @@
 // src/Shop.js
 
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import "../styles/Home.css";
 import "../styles/bootstrap.min.css"
 import "../styles/font-awesome.min.css"
@@ -10,9 +10,31 @@ import "../styles/nice-select.css"
 import "../styles/owl.carousel.min.css"
 import "../styles/slicknav.min.css"
 import "../styles/style.css"
+import Item from "./Item";
+import Home from "./Home";
+
 function Shop() {
-
-
+    const mensProducts = [
+        {
+            name: "Shirt",
+            price: 29.99,
+            image:
+                "https://media.istockphoto.com/id/1354020635/photo/white-t-shirt-mockup-front-used-as-design-template-tee-shirt-blank-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=X5WLEp3EiqJ7eQqGQPW6Vx8l7joo56cTsCmSOIaAfPI=",
+        },
+        {
+            name: "Jeans",
+            price: 49.99,
+            image:
+                "https://media.istockphoto.com/id/1354020635/photo/white-t-shirt-mockup-front-used-as-design-template-tee-shirt-blank-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=X5WLEp3EiqJ7eQqGQPW6Vx8l7joo56cTsCmSOIaAfPI=",
+        },
+        {
+            name: "Jeans",
+            price: 49.99,
+            image:
+                "https://media.istockphoto.com/id/1354020635/photo/white-t-shirt-mockup-front-used-as-design-template-tee-shirt-blank-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=X5WLEp3EiqJ7eQqGQPW6Vx8l7joo56cTsCmSOIaAfPI=",
+        },
+        // Add more products as needed
+    ];
     return (
         <>
 
@@ -304,8 +326,22 @@ function Shop() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <div className="row">
+                                            {mensProducts.map((product) => (
+                                                <div className="col-lg-4 col-md-6 col-sm-6">
+                                                        <Item
+                                                            image={product.image}
+                                                            name={product.name}
+                                                            price={product.price}
+                                                            description={product.description}
+                                                            quantity={product.quantity}
+                                                        />
+                                                </div>
+                                            ))}
+                                        </div>
+                                </div>
+                            </div>
+
                 </div>
             </section>
             {/* Shop Section End */}

@@ -192,6 +192,12 @@ function App() {
               path="/add-item"
               element={<AddItemForm addItem={addItem} />}
             />
+            <Route
+                path="/search-comp"
+                element={<SearchComp key={Date.now()} />}
+            />
+
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </Router>
       </CartProvider>

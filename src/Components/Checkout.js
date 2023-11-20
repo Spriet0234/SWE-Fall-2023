@@ -15,6 +15,7 @@ import { CartContext } from "./CartContext";
 import Item from "./Item";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Checkout = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
@@ -49,12 +50,34 @@ const Checkout = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Process or send form data here
-
-    // Assuming data submission is successful, show confirmation page
-    setCheckoutCompleted(true);
+  
+    // Add logic to get the current date/time
+    const currentDate = new Date().toISOString();
+  
+    // Add the orderDate to the formData
+    const formDataWithDate = {
+      ...formData,
+      orderDate: currentDate,
+    };
+  
+    try {
+      // Make API request to your Lambda function using Axios
+      const response = await axios.post("https://zh7wqwn9m5.execute-api.us-east-1.amazonaws.com/dev", formDataWithDate);
+  
+      // Check if the request was successful
+      if (response.status === 200) {
+        // Assuming data submission is successful, show confirmation page
+        setCheckoutCompleted(true);
+      } else {
+        // Handle error if the request was not successful
+        console.error("Error submitting data:", response.statusText);
+      }
+    } catch (error) {
+      // Handle Axios-specific error
+      console.error("Axios error:", error.message);
+    }
   };
 
   if (checkoutCompleted) {

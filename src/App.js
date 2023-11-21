@@ -127,12 +127,12 @@ function App() {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6 col-md-7"></div>
-                  <div className="col-lg-6 col-md-5">
-                    <div className="header__top__right">
                       <div className="nav-links">
-                        <div className="searchbar-container">
-                          <SearchBar items={oItems} />
-                        </div>
+                        <Link to="/">Home</Link>
+                        <Link to="/Shop">Shop</Link>
+                        <Link to="/about-us">About Us</Link>
+                        <Link to="/contacts">Contacts</Link>
+                        <SearchBar items={oItems} />
                         <Link className="login-link" to="/login">
                           <FaUserCircle /> {/* Render the avatar icon */}
                         </Link>
@@ -140,41 +140,10 @@ function App() {
                           <FaShoppingBag /> {/* Render the shopping bag icon */}
                         </Link>
                       </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-3 col-md-3">
-                  <div className="header__logo">
-                    <img src="../public/Logo.png" alt="" />
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <nav className="header__menu mobile-menu">
-                    <ul>
-                      <li>
-                        <Link to="/">Home</Link>
-                      </li>
-                      <li>
-                        <Link to="/Shop">Shop</Link>
-                      </li>
-                      <li>
-                        <Link to="/about-us">About Us</Link>
-                      </li>
-                      <li>
-                        <Link to="/contacts">Contacts</Link>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-              <div className="canvas__open">
-                <i className="fa fa-bars" />
-              </div>
-            </div>
+
           </header>
 
           <Routes>

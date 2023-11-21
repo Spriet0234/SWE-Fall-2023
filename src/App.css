@@ -43,28 +43,30 @@
 
 /* New styles for the navbar */
 .navbar {
-  background-color: #2d2e31;
-  display: flex;
-  justify-content: flex-end; /* Center the links horizontally */
-  align-items: flex-end;
+  background-color: #3d3b3b;
+  display: flex; /* Center the links horizontally */
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .nav-links {
-  display: flex;
-  gap: 10px;
+  display: flex; /* Standard syntax for flexbox */
+  align-items: center;
+  justify-content: center; /* Center the items horizontally */
+  gap: 30px;
 }
-
 .nav-links a {
-  color: white; /* color of the links */
+  color: #ffffff; /* color of the links */
   text-decoration: none; /* remove underlines */
-  padding: 5px 15px; /* spacing around the links for click area */
-  border-radius: 5px; /* rounded corners */
+  padding: 20px 20px; /* spacing around the links for click area */
+  border-radius: 20px; /* rounded corners */
   transition: background-color 0.3s ease; /* smooth transition for hover effect */
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
-  background-color: #444; /* change color on hover */
+  background-color: #ffffff;
+  color: #000000;/* change color on hover */
 }
 
 /* Specific styles for SearchBar if needed */

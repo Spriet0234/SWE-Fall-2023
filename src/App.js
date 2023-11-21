@@ -15,7 +15,6 @@ import { CartProvider } from "./Components/CartContext"; // Import the CartProvi
 import Register from "./Components/RegisterComponent";
 import MensClothing from "./Components/MensClothing";
 import WomensClothing from "./Components/WomensClothing";
-import AddItemForm from "./Components/AddItemForm";
 import { AuthProvider } from "./Components/AuthProvider"; // adjust the import path as necessary
 
 import "./styles/bootstrap.min.css";
@@ -37,6 +36,7 @@ import ItemDetails from "./Components/ProductDetails";
 import SearchBar from "./Components/SearchBar";
 import SearchComp from "./Components/SearchComp";
 import axios from "axios"; // Import axios for making HTTP requests
+import { v4 as uuidv4 } from "uuid"; // Make sure to import the uuid library
 
 function App() {
   const [items, setItems] = useState([]);
@@ -89,6 +89,8 @@ function App() {
       description: newItem.DESCRIPTION.S,
       image: newItem.IMAGE.S,
       inCart: 1,
+      size: "NA",
+      uniqueId: uuidv4(), // Generate a unique ID for each item
     };
   }
 
@@ -188,10 +190,6 @@ function App() {
             <Route path="/item-details/:id" element={<ItemDetails />} />
             <Route path="/Shop" element={<SearchComp items={oItems} />} />
             <Route path="/search-comp" element={<SearchComp />} />
-            <Route
-              path="/add-item"
-              element={<AddItemForm addItem={addItem} />}
-            />
           </Routes>
         </Router>
       </CartProvider>

@@ -47,7 +47,9 @@ const Home = ({ items }) => {
                     price={item.price}
                     description={item.description}
                     quantity={item.quantity}
+                    size={item.size}
                     inCart={item.inCart}
+                    uniqueId={item.uniqueId}
                     onClick={() => onProductClick(item.description)}
                   />
                 </div>

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid"; // Make sure to install this library with npm install uuid
+import { v4 as uuidv4 } from "uuid";
 
 export const CartContext = createContext();
 
@@ -11,42 +11,23 @@ export const CartProvider = ({ children }) => {
     setUserName(u);
   };
 
-  const addToCart = (newItem) => {
+  const addToCart = (item) => {
     setCartItems((prevItems) => {
-      console.log("Attempting to add item:", newItem);
+      // Generate a unique ID for the new cart item
+      const uniqueId = uuidv4();
+      const newItemWithUniqueId = { ...item, uniqueId };
 
-      // Check if the item already exists in the cart
-      const existingItemIndex = prevItems.findIndex(
-        (item) => item.id === newItem.id
-      );
-
-      if (existingItemIndex !== -1) {
-        // If the item exists, increment the 'inCart' quantity
-        const updatedCartItems = prevItems.map((item, index) =>
-          index === existingItemIndex
-            ? { ...item, inCart: item.inCart + 1 }
-            : item
-        );
-        console.log(
-          "Item already in cart, incremented quantity:",
-          updatedCartItems
-        );
-        return updatedCartItems;
-      } else {
-        // If the item does not exist, add it with 'inCart' set to 1
-        const updatedCartItems = [...prevItems, { ...newItem, inCart: 1 }];
-        console.log("Item not in cart, added new item:", updatedCartItems);
-        return updatedCartItems;
-      }
+      // Add the new item with a unique ID to the cart
+      return [...prevItems, newItemWithUniqueId];
     });
   };
 
-  // Function to remove items from the cart
-  const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const removeFromCart = (uniqueId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.uniqueId !== uniqueId)
+    );
   };
 
-  // Make sure to include all necessary values and functions here
   return (
     <CartContext.Provider
       value={{

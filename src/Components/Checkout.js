@@ -89,6 +89,8 @@ const Checkout = () => {
                 description={item.description}
                 quantity={item.inCart}
                 inCart={item.inCart}
+                size={item.size}
+                uniqueId={item.uniqueId}
                 summary={true} // Pass the summary prop to render it in summary mode
               />
             ))}

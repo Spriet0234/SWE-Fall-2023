@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./AuthProvider";
 import { CartContext } from "./CartContext";
-
 const LoginPage = () => {
   const { userName, setUser } = useContext(CartContext);
 
@@ -19,6 +18,11 @@ const LoginPage = () => {
 
   const handleRegister = async () => {
     try {
+      if (!validateEmail(email)) {
+        console.log("Invalid email format");
+        // You can set an error state or display an error message to the user
+        return;
+      }
       // Perform the login request to your backend API
       const response = await axios.post(
         "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev",
@@ -49,9 +53,38 @@ const LoginPage = () => {
     }
   };
 
+  const validateEmail = (email) => {
+    // Regular expression for a basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleLogin = async () => {
+
     setUser(email);
     try {
+      if (!validateEmail(email)) {
+        alert("Invalid Email");
+        // You can set an error state or display an error message to the user
+        return;
+      }
+      const emailIndex = emailArray.indexOf(email);
+
+      if (emailIndex === -1) {
+        alert("Email does not exist");
+        // You can set an error state or display an error message to the user
+        return;
+      }
+
+      const storedPassword = passwordArray[emailIndex];
+
+      if (password !== storedPassword) {
+        alert("Incorrect password");
+        // You can set an error state or display an error message to the user
+        return;
+      }
+
+
       // Perform the login request to your backend API
       const response = await axios.post(
         "https://wdlnvxccyg.execute-api.us-east-1.amazonaws.com/dev",
@@ -71,9 +104,12 @@ const LoginPage = () => {
         console.log("Login successful");
         console.log("Response message:", responseBody.message); // Access the response message
         // Redirect to the home page or the desired destination
+
+
+
         if (responseBody.message == "Login successful") {
           logint();
-        } else if (responseBody.message == "Incorrect password") {
+        } else if (responseBody.message == "Incorrect username or password") {
           setShowError(true);
         }
 
@@ -86,6 +122,8 @@ const LoginPage = () => {
       // Handle login error
       console.error("Login error:", error);
     }
+
+
   };
 
   var emailArray = [];

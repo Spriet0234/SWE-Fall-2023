@@ -11,12 +11,14 @@ import "../styles/style.css";
 import Item from "./Item";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
+import banner from "../images/banner/banner66.png";
+
 
 const Home = ({ items }) => {
   const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [filteredItems] = useState(items);
 
   const onProductClick = (itemName) => {
     console.log(`${itemName} clicked!`);
@@ -29,7 +31,15 @@ const Home = ({ items }) => {
 
   return (
     <div>
+      <div className="top-banner">
+        <img className="banner-image"
+            src={banner}
+            alt="Header Image"
+             style={{ display: 'block', margin: 'auto'  }}
+        />
+      </div>
       <div className="home-container">
+
         <section className="product-section">
           <div className="product-container">
             <div className="filter-controls">
@@ -39,7 +49,9 @@ const Home = ({ items }) => {
             </div>
 
             <div className="product-display">
-              {filteredItems?.map((item) => (
+              {filteredItems?.sort((a, b) => b.price - a.price)
+                  .slice(0, 10)
+                .map((item) => (
                 <div key={item.id} className="product-item">
                   <Item
                     image={item.image}
@@ -115,29 +127,7 @@ const Home = ({ items }) => {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-              <div className="footer__widget">
-                <h6>NewLetter</h6>
-                <div className="footer__newslatter">
-                  <p>
-                    Be the first to know about new arrivals, look books, sales
-                    &amp; promos!
-                  </p>
-                  <form action="#">
-                    <input type="text" placeholder="Your email" />
-                    <button type="submit">
-                      <span className="icon_mail_alt" />
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12 text-center">
-              <div className="footer__copyright__text"></div>
-            </div>
-          </div>
+        </div>
         </div>
       </footer>
 

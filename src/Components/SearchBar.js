@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Step 1: Import the useNavigate hook
 import "../styles/Search.css";
 
@@ -17,13 +17,17 @@ export default function SearchBar({ items }) {
       // Filter items based on the search term in both name and description
       filteredResult = items.filter(
         (item) =>
-          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.description.toLowerCase().includes(searchTerm.toLowerCase())
+          item.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     setFilteredItems(filteredResult);
     navigate("/search-comp", { state: { filteredItems: filteredResult } });
   };
+
+  useEffect(() => {
+    // Call handleSearch when the component is mounted
+    handleSearch();
+  }, []);
 
   return (
     <input

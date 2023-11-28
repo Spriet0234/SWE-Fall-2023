@@ -9,7 +9,8 @@ import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Cart from "./Components/Cart";
-import Shop from "./Components/Shop"; // Import the Cart component
+import About from "./Components/About.js";
+import Shop from "./Components/SearchComp"; // Import the Cart component
 import Checkout from "./Components/Checkout";
 import { CartProvider } from "./Components/CartContext"; // Import the CartProvider
 import Register from "./Components/RegisterComponent";
@@ -105,8 +106,6 @@ function App() {
       <CartProvider>
         <Router>
           <meta charSet="UTF-8" />
-          <meta name="description" content="Male_Fashion Template" />
-          <meta name="keywords" content="Male_Fashion, unica, creative, html" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
@@ -129,9 +128,8 @@ function App() {
                   <div className="col-lg-6 col-md-7"></div>
                       <div className="nav-links">
                         <Link to="/">Home</Link>
-                        <Link to="/Shop">Shop</Link>
+                        <Link to="/search-comp" >Shop</Link>
                         <Link to="/about-us">About Us</Link>
-                        <Link to="/contacts">Contacts</Link>
                         <SearchBar items={oItems} />
                         <Link className="login-link" to="/login">
                           <FaUserCircle /> {/* Render the avatar icon */}
@@ -152,11 +150,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/about-us" element={<About />} />
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/womens-clothing" element={<WomensClothing />} />
             <Route path="/item-details/:id" element={<ItemDetails />} />
             <Route path="/Shop" element={<SearchComp items={oItems} />} />
-            <Route path="/search-comp" element={<SearchComp />} />
+            <Route path="/search-comp" element={<SearchComp items={oItems}/>} />
             <Route
               path="/add-item"
               element={<AddItemForm addItem={addItem} />}

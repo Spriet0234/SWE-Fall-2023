@@ -1,20 +1,27 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Item from "./Item";
-import SearchBar from "./SearchBar";
+import SearchResults from "./SearchBar";
 import "../styles/SearchComp.css";
 
 export default function SearchComp({ items }) {
   const location = useLocation();
   const initialItems = location.state?.filteredItems || [];
 
-  const [filteredItems, setFilteredItems] = useState(initialItems);
-  const [priceFilter, setPriceFilter] = useState("");
+  const [filteredItems, setFilteredItems] = useState(items);
+  const [priceFilter, setPriceFilter] = useState("...");
   const [availableFilter, setAvailableFilter] = useState(false);
+
+
+
 
   useEffect(() => {
     if (location.state?.filteredItems) {
       setFilteredItems(location.state.filteredItems);
+    }
+    else
+    {
+      setInitialItems();
     }
   }, [location.state]);
 
@@ -27,6 +34,9 @@ export default function SearchComp({ items }) {
     } else if (priceFilter === "high-to-low") {
       newFilteredItems.sort((a, b) => b.price - a.price);
     }
+    else if (priceFilter === "...") {
+      newFilteredItems = items;
+    }
 
     // Filtering by availability based on quantity
     if (availableFilter) {
@@ -34,8 +44,13 @@ export default function SearchComp({ items }) {
     }
 
     setFilteredItems(newFilteredItems);
-  }, [priceFilter, availableFilter, initialItems]);
+  }, [priceFilter, availableFilter]);
 
+
+  const setInitialItems = () => {
+    const initialItems = location.state?.filteredItems || items;
+    setFilteredItems(initialItems);
+  };
   // Event handler for when an item is clicked
   const onProductClick = (itemName) => {
     console.log(`${itemName} clicked!`);
@@ -45,7 +60,6 @@ export default function SearchComp({ items }) {
   return (
     <div className="component-container">
       {/* <SearchBar items={items} /> */}
-
       <div className="filter-container">
         <div>
           <label>Sort by price:
@@ -54,27 +68,25 @@ export default function SearchComp({ items }) {
               value={priceFilter}
               onChange={(e) => setPriceFilter(e.target.value)}
             >
+              <option value="...">...</option>
               <option value="low-to-high">Low to High</option>
               <option value="high-to-low">High to Low</option>
             </select>
           </label>
-        </div>
-
-        <div>
           <label className="availability-checkbox">
-            <input
-              type="checkbox"
-              checked={availableFilter}
-              onChange={(e) => setAvailableFilter(e.target.checked)}
-            />
             Show available items only
+            <input
+                type="checkbox"
+                checked={availableFilter}
+                onChange={(e) => setAvailableFilter(e.target.checked)}
+            />
           </label>
         </div>
       </div>
 
       <div className="results-heading">Results:</div>
       <section className="items-display">
-        {filteredItems.map((item) => (
+        {filteredItems?.map((item) => (
           <div key={item.id} className="item-container">
             <Item
               image={item.image}
@@ -87,6 +99,7 @@ export default function SearchComp({ items }) {
           </div>
         ))}
       </section>
+
     </div>
   );
 }

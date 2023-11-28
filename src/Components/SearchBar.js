@@ -21,7 +21,10 @@ export default function SearchBar({ items }) {
       );
     }
     setFilteredItems(filteredResult);
-    navigate("/search-comp", { state: { filteredItems: filteredResult } });
+    navigate("/search-comp", {
+      state: { filteredItems: filteredResult, searchTerm: searchTerm },
+    });
+    setSearchTerm("");
   };
 
   useEffect(() => {

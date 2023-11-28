@@ -6,8 +6,8 @@ import "../styles/ProductDetails.css";
 const ItemDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [size, setSize] = useState("medium"); // Default size set to 'medium'
-  const { setCartItems } = useContext(CartContext); // Use CartContext
+  const [size, setSize] = useState("Medium"); // Default size set to 'medium'
+  const { setCartItems, addToCart } = useContext(CartContext); // Use CartContext
 
   const item = location.state?.itemData || {
     id: "",
@@ -16,12 +16,13 @@ const ItemDetails = () => {
     price: 0,
     description: "Description not available",
     quantity: 0,
+    size: "",
+    uniqueId: "b",
   };
 
-  const addToCart = () => {
-    // Add the item with the selected size to the cart
-    setCartItems((prevItems) => [...prevItems, { ...item, size }]);
-    //alert("Item added to cart");
+  const handleAddToCart = () => {
+    const itemWithSize = { ...item, size }; // This uses the current state value of 'size'
+    addToCart(itemWithSize);
   };
 
   const handleCheckout = () => {
@@ -45,9 +46,9 @@ const ItemDetails = () => {
         <label>
           Size:
           <select value={size} onChange={(e) => setSize(e.target.value)}>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
           </select>
         </label>
       </div>
@@ -55,7 +56,7 @@ const ItemDetails = () => {
         <button className="back-button" onClick={goBack}>
           Back
         </button>
-        <button className="cart-button" onClick={addToCart}>
+        <button className="cart-button" onClick={handleAddToCart}>
           Add to Cart
         </button>
         {/* <button className="checkout-button" onClick={handleCheckout}>

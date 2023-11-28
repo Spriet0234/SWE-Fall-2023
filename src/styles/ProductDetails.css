@@ -85,8 +85,8 @@
   background-color: #218838;
 }
 .cart-button {
-  background-color: #ffc107;
-  color: black;
+  background-color: #007bff;
+  color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 30px;
@@ -96,5 +96,5 @@
 }
 
 .cart-button:hover {
-  background-color: #e0a800;
+  background-color: #007bff;
 }

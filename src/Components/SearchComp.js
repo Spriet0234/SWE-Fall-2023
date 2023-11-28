@@ -7,6 +7,7 @@ import "../styles/SearchComp.css";
 export default function SearchComp({ items }) {
   const location = useLocation();
   const initialItems = location.state?.filteredItems || [];
+  const searchTerm = location.state?.searchTerm || "";
 
   const [filteredItems, setFilteredItems] = useState(items);
   const [priceFilter, setPriceFilter] = useState("...");
@@ -62,7 +63,8 @@ export default function SearchComp({ items }) {
       {/* <SearchBar items={items} /> */}
       <div className="filter-container">
         <div>
-          <label>Sort by price:
+          <label>
+            Sort by price:
             <select
               className="sort-select"
               value={priceFilter}
@@ -84,7 +86,7 @@ export default function SearchComp({ items }) {
         </div>
       </div>
 
-      <div className="results-heading">Results:</div>
+      <div className="results-heading">{`Results for '${searchTerm}':`}</div>
       <section className="items-display">
         {filteredItems?.map((item) => (
           <div key={item.id} className="item-container">
@@ -94,6 +96,9 @@ export default function SearchComp({ items }) {
               price={item.price}
               description={item.description}
               quantity={item.quantity}
+              size={item.size}
+              inCart={item.inCart}
+              uniqueId={item.uniqueId}
               onProductClick={() => onProductClick(item.name)}
             />
           </div>

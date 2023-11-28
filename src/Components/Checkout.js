@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Checkout = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, setCartItems } = useContext(CartContext);
   const location = useLocation();
   const total = location.state?.total;
 
@@ -52,20 +52,23 @@ const Checkout = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Add logic to get the current date/time
     const currentDate = new Date().toISOString();
-  
+
     // Add the orderDate to the formData
     const formDataWithDate = {
       ...formData,
       orderDate: currentDate,
     };
-  
+
     try {
       // Make API request to your Lambda function using Axios
-      const response = await axios.post("https://zh7wqwn9m5.execute-api.us-east-1.amazonaws.com/dev", formDataWithDate);
-  
+      const response = await axios.post(
+        "https://zh7wqwn9m5.execute-api.us-east-1.amazonaws.com/dev",
+        formDataWithDate
+      );
+
       // Check if the request was successful
       if (response.status === 200) {
         // Assuming data submission is successful, show confirmation page
@@ -118,6 +121,8 @@ const Checkout = () => {
                 description={item.description}
                 quantity={item.inCart}
                 inCart={item.inCart}
+                size={item.size}
+                uniqueId={item.uniqueId}
                 summary={true} // Pass the summary prop to render it in summary mode
               />
             ))}
@@ -126,7 +131,7 @@ const Checkout = () => {
             <strong>{`Total Amount: $${total}`}</strong>
           </p>
         </div>
-        <Link to="/" className="back-link2">
+        <Link to="/" className="back-link2" onClick={() => setCartItems([])}>
           Back to Shopping
         </Link>
       </div>
@@ -255,7 +260,7 @@ const Checkout = () => {
             required
           />
         </div>
-        <button type="submit" className="checkout-button">
+        <button type="submit" className="checkout-button" onClick={() => {}}>
           Complete Purchase
         </button>
       </form>

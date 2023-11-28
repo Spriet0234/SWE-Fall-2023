@@ -75,6 +75,7 @@ export default function Cart() {
   };
 
   const handleRemoveItem = (id) => {
+    console.log(id + "asdf");
     removeFromCart(id); // Call the removeFromCart function from your context
   };
 
@@ -130,11 +131,19 @@ export default function Cart() {
                               </div>
                               <div className="ms-3">
                                 <MDBTypography tag="h5">
-                                  {item.name}
+                                  <div>{item.name}</div>
+                                  <div>
+                                    <span
+                                      style={{ fontSize: "80%", color: "gray" }}
+                                    >
+                                      Size: {item.size}
+                                    </span>
+                                  </div>
                                 </MDBTypography>
                                 <p className="small mb-0">{item.details}</p>
                               </div>
                             </div>
+
                             <div className="d-flex flex-row align-items-center">
                               <div style={{ width: "50px" }}>
                                 <MDBTypography
@@ -149,10 +158,11 @@ export default function Cart() {
                                   ${item.price.toFixed(2)}
                                 </MDBTypography>
                               </div>
+
                               <a
                                 href="#!"
                                 style={{ color: "#cecece" }}
-                                onClick={() => handleRemoveItem(item.id)}
+                                onClick={() => handleRemoveItem(item.uniqueId)}
                               >
                                 <MDBIcon fas icon="trash-alt" />
                               </a>

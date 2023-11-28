@@ -1,0 +1,20 @@
+.notification {
+  background-color: #4bb543; /* Success color */
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: -50px; /* Initially hidden above the view */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: top 0.5s ease-in-out;
+}
+
+.notification.show {
+  top: 20px; /* Slide down into view */
+}
+
+.notification.hide {
+  top: -50px; /* Slide back up and out of view */
+}

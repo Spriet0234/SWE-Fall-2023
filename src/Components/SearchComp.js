@@ -48,16 +48,17 @@ export default function SearchComp({ items }) {
 
       <div className="filter-container">
         <div>
-          <label>Sort by price:</label>
-          <select
-            className="sort-select"
-            value={priceFilter}
-            onChange={(e) => setPriceFilter(e.target.value)}
-          >
-            <option value="">Select...</option>
-            <option value="low-to-high">Low to High</option>
-            <option value="high-to-low">High to Low</option>
-          </select>
+          <label>
+            Sort by price:
+            <select
+              className="sort-select"
+              value={priceFilter}
+              onChange={(e) => setPriceFilter(e.target.value)}
+            >
+              <option value="low-to-high">Low to High</option>
+              <option value="high-to-low">High to Low</option>
+            </select>
+          </label>
         </div>
 
         <div>
@@ -83,6 +84,7 @@ export default function SearchComp({ items }) {
               description={item.description}
               quantity={item.quantity}
               size={item.size}
+              inCart={item.inCart}
               uniqueId={item.uniqueId}
               onProductClick={() => onProductClick(item.name)}
             />

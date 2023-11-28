@@ -43,15 +43,23 @@ input[type="checkbox"] {
 }
 
 .item-container {
-  max-width: 25%; /* Adjust this value as needed */
+  max-width: 25%;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: 20%; /* Adjust this value as needed, should be slightly less than max-width */
+  flex-basis: 20%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 5px;
   border-radius: 8px;
   background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+}
+.item-container:hover {
+  /*transform: scale(1.005);  Slightly increase size */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Increase shadow for a lifting effect */
+  cursor: pointer;
 }
 
 /* Responsive adjustments */
